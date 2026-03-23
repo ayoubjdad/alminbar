@@ -70,3 +70,7 @@ h5,
 h6 {
   margin: 0;
 }
+
+i {
+  display: "flex";
+}

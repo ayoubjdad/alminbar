@@ -11,10 +11,19 @@ const MOST_READ = [
 
 const LATEST = [
   { text: "قمة عربية تبحث ملفات الأمن الغذائي والمائي", time: "منذ 15 دقيقة" },
-  { text: "وزير الخارجية: نعمل على تهدئة الوضع عبر الحوار", time: "منذ 32 دقيقة" },
+  {
+    text: "وزير الخارجية: نعمل على تهدئة الوضع عبر الحوار",
+    time: "منذ 32 دقيقة",
+  },
   { text: "البنك المركزي يصدر بياناً حول السياسة النقدية", time: "منذ ساعة" },
-  { text: "انتخابات نقابية تسجل إقبالاً ملحوظاً في العاصمة", time: "منذ ساعتين" },
-  { text: "تقرير: الاستثمارات الأجنبية تنمو في القطاع الرقمي", time: "منذ 3 ساعات" },
+  {
+    text: "انتخابات نقابية تسجل إقبالاً ملحوظاً في العاصمة",
+    time: "منذ ساعتين",
+  },
+  {
+    text: "تقرير: الاستثمارات الأجنبية تنمو في القطاع الرقمي",
+    time: "منذ 3 ساعات",
+  },
 ];
 
 const VIDEOS = [
@@ -28,6 +37,24 @@ const VIDEOS = [
 export default function ReadingLatestVideo() {
   return (
     <section className={styles.root}>
+      <div className={styles.videoCol} style={{ backgroundColor: "#2540d8" }}>
+        <div className={styles.videoHeader}>
+          <h2 className={styles.videoTitle}>فيديو</h2>
+        </div>
+        <ul className={styles.videoList}>
+          {VIDEOS.map((line, i) => (
+            <li key={i} className={styles.videoRow}>
+              <span className={styles.videoRank}>{i + 1}</span>
+              <div
+                className={styles.videoThumb}
+                style={{ "--post-bg": `url(${postImage.src})` }}
+              />
+              <p className={styles.videoText}>{line}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <div className={styles.col}>
         <h2 className={styles.colTitle}>الأكثر قراءة</h2>
         <ol className={styles.mostReadList}>
@@ -47,24 +74,6 @@ export default function ReadingLatestVideo() {
             <li key={i} className={styles.latestItem}>
               <p className={styles.latestText}>{row.text}</p>
               <span className={styles.latestTime}>{row.time}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className={styles.videoCol}>
-        <div className={styles.videoHeader}>
-          <h2 className={styles.videoTitle}>فيديو</h2>
-        </div>
-        <ul className={styles.videoList}>
-          {VIDEOS.map((line, i) => (
-            <li key={i} className={styles.videoRow}>
-              <span className={styles.videoRank}>{i + 1}</span>
-              <p className={styles.videoText}>{line}</p>
-              <div
-                className={styles.videoThumb}
-                style={{ "--post-bg": `url(${postImage.src})` }}
-              />
             </li>
           ))}
         </ul>

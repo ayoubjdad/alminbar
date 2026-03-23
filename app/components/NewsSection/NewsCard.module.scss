@@ -2,9 +2,6 @@
   flex: 1;
   min-width: 0;
   overflow: hidden;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .thumb {
@@ -15,13 +12,14 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border-radius: 8px;
 }
 
 .body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 12px 14px 16px;
+  padding: 12px 0 16px 0;
 }
 
 .headline {

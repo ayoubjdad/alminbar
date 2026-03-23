@@ -55,7 +55,7 @@ export default function SiteHeader() {
         ))}
       </nav>
 
-      <ContributorsBar />
+      {/* <ContributorsBar /> */}
     </div>
   );
 }
