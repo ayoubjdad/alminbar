@@ -1,0 +1,37 @@
+.card {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #e0e0e0;
+  background-image: var(--post-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px 16px;
+}
+
+.headline {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #212121;
+}
+
+.date {
+  font-size: 12px;
+  color: #757575;
+}

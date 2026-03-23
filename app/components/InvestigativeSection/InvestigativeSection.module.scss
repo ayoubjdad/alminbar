@@ -1,0 +1,64 @@
+.root {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.head {
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  background: #003399;
+  border-radius: 8px;
+}
+
+.headTitle {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.card {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-image: var(--post-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.body {
+  padding: 12px 14px 16px;
+}
+
+.cardTitle {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #212121;
+}
+
+.date {
+  font-size: 12px;
+  color: #757575;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,89 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 0;
+  overflow: hidden;
+  background: #0a1747;
+  border-radius: 8px;
+}
+
+.media {
+  min-height: 120px;
+  background-image: var(--post-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  padding: 14px;
+  color: #fff;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #003399;
+  text-transform: none;
+  background: #ffc107;
+  border-radius: 6px;
+}
+
+.question {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.barTrack {
+  height: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.barFill {
+  height: 100%;
+  background: #ffc107;
+  border-radius: 4px;
+}
+
+.pctLabel {
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffc107;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+  }
+}

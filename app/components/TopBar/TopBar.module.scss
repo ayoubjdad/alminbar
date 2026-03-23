@@ -1,17 +1,57 @@
 .bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-between;
   width: 100%;
-  height: 40px;
-  color: #fff;
+  min-height: 36px;
+  padding: 0 20px;
+  color: #e0e0e0;
+  font-size: 13px;
   font-weight: 500;
   background-color: #212121;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 .item {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.sep {
+  opacity: 0.5;
+}
+
+.social {
+  display: flex;
+  gap: 10px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+  .bar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 12px;
+  }
 }

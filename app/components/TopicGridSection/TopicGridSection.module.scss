@@ -1,0 +1,96 @@
+.root {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.column {
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.columnHead {
+  padding: 12px 14px;
+}
+
+.headSports {
+  background: #1b5e20;
+}
+
+.headTech {
+  background: #003399;
+}
+
+.headHealth {
+  background: #006064;
+}
+
+.headEnv {
+  background: #33691e;
+}
+
+.columnTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.featured {
+  border-bottom: 1px solid #eee;
+}
+
+.featuredImg {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-image: var(--post-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.featuredText {
+  padding: 12px 14px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  color: #212121;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.listTitle {
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #212121;
+}
+
+.listDate {
+  font-size: 11px;
+  color: #757575;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

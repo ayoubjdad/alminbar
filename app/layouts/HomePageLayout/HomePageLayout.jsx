@@ -1,5 +1,6 @@
-import TopBar from "../../components/TopBar/TopBar";
+import SiteFooter from "../../components/SiteFooter/SiteFooter";
 import SiteHeader from "../../components/SiteHeader/SiteHeader";
+import TopBar from "../../components/TopBar/TopBar";
 import styles from "./HomePageLayout.module.scss";
 
 export default function HomePageLayout({ children }) {
@@ -8,6 +9,7 @@ export default function HomePageLayout({ children }) {
       <TopBar />
       <SiteHeader />
       <main className={styles.main}>{children}</main>
+      <SiteFooter />
     </div>
   );
 }

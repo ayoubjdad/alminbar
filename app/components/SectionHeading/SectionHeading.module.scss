@@ -1,12 +1,18 @@
 .row {
   display: flex;
+  width: 100%;
   padding-bottom: 10px;
   border-bottom: 1px solid #d8d8d8;
+}
+
+.rowInline {
+  display: flex;
+  width: 100%;
 }
 
 .title {
   margin: 0;
   font-size: 25px;
   font-weight: 700;
-  color: #2540d8;
+  color: #003399;
 }

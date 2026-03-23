@@ -1,5 +1,4 @@
 import "./globals.css";
-import Link from "next/link";
 import localFont from "next/font/local";
 
 const ailato = localFont({
