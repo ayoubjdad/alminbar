@@ -1,0 +1,72 @@
+@import url("https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-Thin.ttf") format("truetype");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Ailato";
+  src: url("/assets/fonts/ailato/Ailato-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.87);
+  font-family: "Ailato", sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}

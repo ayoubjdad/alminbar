@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  width: 100%;
+  height: 170px;
+  padding: 20px;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0)
+    ),
+    var(--post-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+}

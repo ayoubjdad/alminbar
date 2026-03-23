@@ -1,0 +1,39 @@
+.root {
+  display: flex;
+  max-width: 1250px;
+  height: 340px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.featured {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  min-width: 625px;
+  height: 100%;
+  padding: 20px;
+  font-weight: 700;
+  background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0)
+    ),
+    var(--post-bg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.featuredTitle {
+  margin: 0;
+  font-size: 25px;
+  color: #fff;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}

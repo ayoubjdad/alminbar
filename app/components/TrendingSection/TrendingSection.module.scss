@@ -1,0 +1,19 @@
+.root {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 500px 1fr 1fr;
+  gap: 20px;
+}
+
+.column {
+  min-width: 0;
+}
+
+.columnHighlight {
+  min-width: 0;
+  background-color: red;
+}
