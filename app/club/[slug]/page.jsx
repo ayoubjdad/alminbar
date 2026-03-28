@@ -5,6 +5,7 @@ import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import NewsCard from "../../components/NewsSection/NewsCard";
 import { getAllClubSlugs, getClubBySlug } from "../../../lib/moroccanClubs";
 import { getArticlesByClub } from "../../../lib/newsData";
+import { SITE } from "../../../lib/staticData/site";
 import styles from "./clubPage.module.scss";
 
 export async function generateStaticParams() {
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }) {
   const club = getClubBySlug(slug);
   if (!club) return { title: "النادي غير موجود" };
   return {
-    title: `${club.name} | المشهد`,
+    title: `${club.name} | ${SITE.name}`,
     description: `أخبار وترتيب ${club.name}`,
   };
 }

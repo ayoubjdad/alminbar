@@ -72,6 +72,29 @@
   text-align: start;
 }
 
+.featuredLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .featuredText {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary, #003399);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+.empty {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--color-text-muted, #616161);
+}
+
 .featuredText {
   margin: 0 0 8px;
   font-size: clamp(15px, 2.2vw, 17px);

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SITE } from "../../../lib/staticData/site";
 import styles from "./SiteFooter.module.scss";
 
 export default function SiteFooter() {
@@ -10,7 +11,7 @@ export default function SiteFooter() {
             src="https://www.almashhad.com/static/images/LogoBlue.svg"
             width={180}
             height={42}
-            alt="المشهد"
+            alt={SITE.name}
             className={styles.logo}
           />
           <div className={styles.social}>
@@ -27,7 +28,10 @@ export default function SiteFooter() {
               ▶
             </a>
           </div>
-          <p className={styles.copy}>© {new Date().getFullYear()} المشهد. جميع الحقوق محفوظة.</p>
+          <p className={styles.tagline}>{SITE.description}</p>
+          <p className={styles.copy}>
+            © {new Date().getFullYear()} {SITE.name}. جميع الحقوق محفوظة.
+          </p>
         </div>
 
         <div className={styles.col}>
@@ -44,7 +48,7 @@ export default function SiteFooter() {
             </button>
           </div>
           <button type="button" className={styles.ctaYellow}>
-            حمّل تطبيق المشهد
+            حمّل تطبيق {SITE.name}
           </button>
         </div>
 

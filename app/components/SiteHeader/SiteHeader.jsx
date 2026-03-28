@@ -3,22 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
+import { useStaticData } from "../../../lib/staticData";
 import styles from "./SiteHeader.module.scss";
 
-const NAV = [
-  { label: "الرئيسية", href: "/" },
-  { label: "أندية مغربية", href: "/#moroccan-clubs" },
-  { label: "سياسة", href: "/category/politics" },
-  { label: "اقتصاد", href: "/category/economy" },
-  { label: "رياضة", href: "/category/sports" },
-  { label: "أخبار لبنان", href: "/category/lebanon" },
-  { label: "العالم العربي", href: "/category/world" },
-  { label: "منوعات", href: "/category/society" },
-  { label: "تكنولوجيا", href: "/category/tech" },
-  { label: "صحة", href: "/category/health" },
-];
-
 export default function SiteHeader() {
+  const { siteNav, site } = useStaticData();
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -62,12 +51,12 @@ export default function SiteHeader() {
           >
             <i className={`fi fi-rr-menu-burger ${styles.menuIcon}`} />
           </button>
-          <Link href="/" className={styles.logoLink} aria-label="الرئيسية">
+          <Link href="/" className={styles.logoLink} aria-label={`الرئيسية — ${site.name}`}>
             <Image
               src="https://www.almashhad.com/static/images/LogoBlue.svg"
               width={220}
               height={50}
-              alt="المشهد"
+              alt={site.name}
               priority
               className={styles.logo}
             />
@@ -81,7 +70,7 @@ export default function SiteHeader() {
             <input
               type="search"
               className={styles.search}
-              placeholder="ابحث في المشهد"
+              placeholder={`ابحث في ${site.name}`}
               aria-label="بحث"
             />
             <button type="button" className={styles.searchBtn}>
@@ -93,7 +82,7 @@ export default function SiteHeader() {
       </div>
 
       <nav className={styles.nav} aria-label="التصنيفات">
-        {NAV.map((item) => (
+        {siteNav.map((item) => (
           <Link key={item.href + item.label} href={item.href} className={styles.navItem}>
             <span className={styles.navLabel}>{item.label}</span>
           </Link>
@@ -130,7 +119,7 @@ export default function SiteHeader() {
           </button>
         </div>
         <nav className={styles.drawerNav} aria-label="التصنيفات">
-          {NAV.map((item) => (
+          {siteNav.map((item) => (
             <Link
               key={item.href + item.label}
               href={item.href}

@@ -16,7 +16,7 @@ export default function GalleriesFeature() {
               </span>
               <h2 className={styles.title}>معرض الفيديو</h2>
               <p className={styles.sub}>
-                أبرز اللقطات والتقارير المصورة من المشهد
+                أهداف، ملخصات، وتحليلات من الدوري المغربي والقارة
               </p>
             </div>
           </div>
@@ -30,9 +30,9 @@ export default function GalleriesFeature() {
               <span className={styles.icon} aria-hidden>
                 <i className="fi fi-rr-shop" />
               </span>
-              <h2 className={styles.title}>سوق اليوم</h2>
+              <h2 className={styles.title}>سوق الانتقالات</h2>
               <p className={styles.sub}>
-                تغطية اقتصادية لأهم الأسعار والمستجدات
+                صفقات الأندية المغربية والعربية والقيم السوقية
               </p>
             </div>
           </div>

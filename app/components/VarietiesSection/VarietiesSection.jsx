@@ -18,7 +18,7 @@ export default function VarietiesSection() {
 
   return (
     <section className={styles.root}>
-      <SectionHeading title="منوعات" />
+      <SectionHeading title="ملفات ومنوعات كروية" />
       <div className={styles.grid}>
         {isPending
           ? Array.from({ length: 5 }).map((_, i) => (

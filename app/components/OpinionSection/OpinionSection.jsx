@@ -2,18 +2,18 @@ import SectionHeading from "../SectionHeading/SectionHeading";
 import styles from "./OpinionSection.module.scss";
 
 const WRITERS = [
-  { name: "د. أحمد المنصوري", role: "كتاب الرأي" },
-  { name: "ليلى الحسين", role: "كتاب الرأي" },
-  { name: "محمد الخطيب", role: "كتاب الرأي" },
-  { name: "سارة القاضي", role: "كتاب الرأي" },
-  { name: "عمر الزين", role: "كتاب الرأي" },
-  { name: "نورا الدين", role: "كتاب الرأي" },
+  { name: "يوسف الإدريسي", role: "تحليل تكتيكي" },
+  { name: "فاطمة الزهراء العمراني", role: "كرة مغربية" },
+  { name: "كريم بنعلي", role: "البطولة الاحترافية" },
+  { name: "سارة المرابط", role: "المنتخب والأندية" },
+  { name: "عمر التازي", role: "احتراف وانتقالات" },
+  { name: "نور الدين الصقلي", role: "شؤون الجماهير" },
 ];
 
 export default function OpinionSection() {
   return (
     <section className={styles.root}>
-      <SectionHeading title="كتاب الرأي" />
+      <SectionHeading title="رأي وتحليل" />
       <div className={styles.grid}>
         {WRITERS.map((w, i) => (
           <article key={i} className={styles.card}>

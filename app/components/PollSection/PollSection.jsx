@@ -4,19 +4,19 @@ import styles from "./PollSection.module.scss";
 
 const POLLS = [
   {
-    q: "برأيك.. ما أبرز عامل يشكّل المشهد خلال الأيام المقبلة؟",
+    q: "من يفوز بالبطولة الاحترافية هذا الموسم؟",
     pct: 62,
   },
   {
-    q: "هل ترى أن التطورات الأخيرة ستنعكس على الاقتصاد المحلي؟",
+    q: "هل ترى أن المنتخب المغربي جاهز للمنافسة القارية؟",
     pct: 48,
   },
   {
-    q: "ما مدى اهتمامك بمتابعة التحليلات السياسية اليومية؟",
+    q: "ما مدى اهتمامك بمتابعة الدوري المغربي أسبوعياً؟",
     pct: 74,
   },
   {
-    q: "كيف تقيّم تغطية المشهد للأحداث الميدانية؟",
+    q: "كيف تقيّم تغطيتنا لأخبار الأندية والبطولة؟",
     pct: 55,
   },
 ];
@@ -24,7 +24,7 @@ const POLLS = [
 export default function PollSection() {
   return (
     <section className={styles.root}>
-      <SectionHeading title="استطلاع المشهد" />
+      <SectionHeading title="استطلاع المنبر" />
       <div className={styles.grid}>
         {POLLS.map((poll, i) => (
           <article key={i} className={styles.card}>

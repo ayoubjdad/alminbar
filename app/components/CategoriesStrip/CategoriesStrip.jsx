@@ -1,12 +1,16 @@
+"use client";
+
 import Link from "next/link";
-import { CATEGORIES } from "../../../lib/categories";
+import { useStaticData } from "../../../lib/staticData";
 import styles from "./CategoriesStrip.module.scss";
 
 export default function CategoriesStrip() {
+  const { categories } = useStaticData();
+
   return (
     <nav className={styles.root} aria-label="أقسام الموقع">
       <div className={styles.inner}>
-        {CATEGORIES.map((c) => (
+        {categories.map((c) => (
           <Link
             key={c.slug}
             href={`/category/${c.slug}`}

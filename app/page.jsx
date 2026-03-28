@@ -21,12 +21,12 @@ export default function Home() {
       <MoroccanClubsSection />
       <CategoriesStrip />
       <Hero />
-      <NewsSection title="أخبار لبنان" sectionKey="lebanon" />
-      <NewsSection title="العالم العربي" sectionKey="arab-world" />
+      <NewsSection title="الدوري والأندية المغربية" sectionKey="club" />
+      <NewsSection title="عالم كرة القدم" sectionKey="arab-world" />
       <ReadingLatestVideo />
       <AdZone slot={AD_SLOTS.HOME_INLINE_SECONDARY} variant="leaderboard" />
-      <NewsSection title="أخبار لبنان" sectionKey="lebanon" />
-      <NewsSection title="العالم العربي" sectionKey="arab-world" />
+      <NewsSection title="رياضة مغربية" sectionKey="lebanon" />
+      <NewsSection title="منوعات رياضية" sectionKey="variety" />
       <VarietiesSection />
       <PollSection />
       <OpinionSection />

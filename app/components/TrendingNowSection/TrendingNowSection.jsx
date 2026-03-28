@@ -9,7 +9,7 @@ import {
 } from "../../../lib/queries/newsQueries";
 import styles from "./TrendingNowSection.module.scss";
 
-const TITLE = "يتصدر الآن";
+const TITLE = "الأكثر تداولاً في الكرة المغربية";
 
 export default function TrendingNowSection() {
   const { data: items = [], isPending } = useQuery({

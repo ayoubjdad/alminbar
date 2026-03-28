@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { MOROCCAN_CLUBS } from "../../../lib/moroccanClubs";
+import { useStaticData } from "../../../lib/staticData";
 import styles from "./MoroccanClubsSection.module.scss";
 
 export default function MoroccanClubsSection() {
+  const { clubs } = useStaticData();
+
   return (
     <section
       className={styles.root}
@@ -11,10 +15,9 @@ export default function MoroccanClubsSection() {
       aria-labelledby="moroccan-clubs-heading"
     >
       <div className={styles.track} role="list">
-        {MOROCCAN_CLUBS.map((c, i) => (
+        {clubs.map((c) => (
           <Link
-            // key={c.slug}
-            key={i}
+            key={c.slug}
             href={`/club/${c.slug}`}
             className={styles.chip}
             role="listitem"
@@ -22,7 +25,7 @@ export default function MoroccanClubsSection() {
             <span className={styles.logoWrap}>
               <Image
                 // src={c.logo}
-                src="https://img.sofascore.com/api/v1/team/41757/image"
+                src={`https://img.sofascore.com/api/v1/team/${c.id}/image`}
                 alt=""
                 width={48}
                 height={48}

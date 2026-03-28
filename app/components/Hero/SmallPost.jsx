@@ -1,15 +1,16 @@
+import Link from "next/link";
 import postImage from "../../assets/images/post_large.webp";
 import styles from "./SmallPost.module.scss";
 
-export default function SmallPost() {
+export default function SmallPost({ title, slug, imageUrl }) {
+  const bg = imageUrl ?? postImage.src;
   return (
-    <div
+    <Link
+      href={`/article/${slug}`}
       className={styles.root}
-      style={{ "--post-bg": `url(${postImage.src})` }}
+      style={{ "--post-bg": `url(${bg})` }}
     >
-      <p className={styles.title}>
-        أمين عام الناتو: الحلف قادر على إعادة فتح مضيق هرمز
-      </p>
-    </div>
+      <p className={styles.title}>{title}</p>
+    </Link>
   );
 }

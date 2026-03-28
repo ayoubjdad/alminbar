@@ -1,5 +1,6 @@
 import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import { getAllSlugs, getArticleBySlug } from "../../../lib/newsData";
+import { SITE } from "../../../lib/staticData/site";
 import ArticleContent from "./ArticleContent";
 
 export async function generateStaticParams() {
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }) {
     return { title: "المقال غير موجود" };
   }
   return {
-    title: `${article.title} | المشهد`,
+    title: `${article.title} | ${SITE.name}`,
     description: article.excerpt,
   };
 }

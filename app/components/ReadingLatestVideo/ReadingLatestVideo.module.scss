@@ -27,10 +27,28 @@
 }
 
 .mostReadItem {
-  display: flex;
-  gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid #eee;
+}
+
+.mostReadRow {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover .mostReadText {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #003399;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 .num {
@@ -56,6 +74,23 @@
 .latestItem {
   padding: 14px 0;
   border-bottom: 1px solid #eee;
+}
+
+.latestLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover .latestText {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #003399;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 .latestText {

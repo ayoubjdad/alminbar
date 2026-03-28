@@ -4,6 +4,7 @@ import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import NewsCard from "../../components/NewsSection/NewsCard";
 import { getAllCategorySlugs, getCategoryBySlug } from "../../../lib/categories";
 import { getArticlesBySiteCategory } from "../../../lib/newsData";
+import { SITE } from "../../../lib/staticData/site";
 import styles from "./categoryPage.module.scss";
 
 export async function generateStaticParams() {
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }) {
   const cat = getCategoryBySlug(slug);
   if (!cat) return { title: "القسم غير موجود" };
   return {
-    title: `${cat.label} | المشهد`,
+    title: `${cat.label} | ${SITE.name}`,
     description: cat.description,
   };
 }

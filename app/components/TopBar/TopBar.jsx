@@ -1,6 +1,12 @@
 import styles from "./TopBar.module.scss";
 
-const ITEMS = ["أخبار", "برامج", "المشهد سبورتس", "بودكاست", "ترندات"];
+const ITEMS = [
+  "البطولة الاحترافية",
+  "المنتخب المغربي",
+  "الكأس العرش",
+  "أندية الدوري",
+  "مباريات اليوم",
+];
 
 export default function TopBar() {
   return (

@@ -2,22 +2,24 @@
 
 import Image from "next/image";
 import { useId, useMemo, useState } from "react";
-import { DEFAULT_LEAGUE_TABS } from "../../../lib/data/footballRankings";
+import { useStaticData } from "../../../lib/staticData";
 import styles from "./LeagueRankingsPanel.module.scss";
 
 /**
  * تبويبات بشعارات الدوريات (صف أفقي) + لوحة ترتيب واحدة.
- * `tabs`: مصفوفة من `DEFAULT_LEAGUE_TABS` أو بياناتك.
+ * `tabs`: اختياري — الافتراضي من `StaticDataProvider`.
  */
-export default function LeagueRankingsPanel({ tabs = DEFAULT_LEAGUE_TABS }) {
+export default function LeagueRankingsPanel({ tabs }) {
+  const { leagueTabs } = useStaticData();
+  const resolvedTabs = tabs ?? leagueTabs;
   const baseId = useId();
   const defaultIdx = useMemo(() => {
-    const i = tabs.findIndex((t) => t.id === "botola");
+    const i = resolvedTabs.findIndex((t) => t.id === "botola");
     return i >= 0 ? i : 0;
-  }, [tabs]);
+  }, [resolvedTabs]);
 
   const [activeIdx, setActiveIdx] = useState(defaultIdx);
-  const active = tabs[activeIdx] ?? tabs[0];
+  const active = resolvedTabs[activeIdx] ?? resolvedTabs[0];
   const panelId = `${baseId}-panel`;
 
   if (!active) {
@@ -33,7 +35,7 @@ export default function LeagueRankingsPanel({ tabs = DEFAULT_LEAGUE_TABS }) {
           role="tablist"
           aria-label="اختر الدوري"
         >
-          {tabs.map((tab, i) => (
+          {resolvedTabs.map((tab, i) => (
             <button
               key={tab.id}
               type="button"
@@ -148,7 +150,9 @@ export default function LeagueRankingsPanel({ tabs = DEFAULT_LEAGUE_TABS }) {
         )}
       </div>
 
-      <p className={styles.note}>بيانات عيّنة — جاهزة لاستبدالها بمصدر حيّ.</p>
+      <p className={styles.note}>
+        ترتيب تجريبي — البطولة الاحترافية والدوريات الأوروبية (جاهز لربط API).
+      </p>
     </div>
   );
 }
