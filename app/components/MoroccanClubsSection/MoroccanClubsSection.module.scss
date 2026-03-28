@@ -1,0 +1,53 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0 4px;
+  max-width: var(--content-max, 1250px);
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.track {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  justify-content: space-between;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+}
+
+.chip {
+  gap: 6px;
+  display: flex;
+  flex: 0 0 auto;
+  color: inherit;
+  align-items: center;
+  text-decoration: none;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+}
+
+.logo {
+  object-fit: contain;
+}

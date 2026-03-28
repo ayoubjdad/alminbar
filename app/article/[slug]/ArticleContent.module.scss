@@ -44,6 +44,28 @@
   color: #424242;
 }
 
+.adUnderTitle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.adInline {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 4px 0 8px;
+}
+
+.adBottom {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 28px;
+}
+
 .hero {
   position: relative;
   width: 100%;

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 1250px;
+  max-width: var(--content-max, 1250px);
   margin: 0 auto;
   width: 100%;
 }
@@ -13,7 +13,7 @@
   align-items: flex-end;
   justify-content: space-between;
   padding-bottom: 10px;
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid var(--color-border-strong, #d8d8d8);
 }
 
 .headerRow > :first-child {
@@ -21,11 +21,11 @@
   min-width: 0;
 }
 
-.carouselControls {
-  display: flex;
-  flex-shrink: 0;
-  gap: 8px;
-  align-items: center;
+/* حاوية نسبية: الأزرار تُرسَم فوق مسار التمرير وتتمركز على ارتفاع الصورة */
+.carouselViewport {
+  position: relative;
+  width: 100%;
+  overflow: visible;
 }
 
 .carousel {
@@ -66,31 +66,58 @@
   }
 }
 
-.carouselBtn {
+/* أزرار دائرية، نصفها يغطي حافة البطاقة — تمركز عمودي على منطقة الصورة */
+.carouselBtnPrev,
+.carouselBtnNext {
+  position: absolute;
+  z-index: 4;
   display: flex;
-  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
   color: #fff;
   cursor: pointer;
-  background: #003399;
+  background: var(--color-primary, #003399);
   border: none;
-  border-radius: 8px;
-  transition: background 0.15s ease, transform 0.1s ease;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+
+  /* احتياطي قبل قياس ارتفاع الصورة */
+  top: calc(min(85vw, 280px) * 10 / 16 / 2);
+  transform: translateY(-50%);
 
   &:hover {
-    background: #002266;
+    background: var(--color-primary-dark, #002266);
+    box-shadow: 0 4px 14px rgba(0, 51, 153, 0.35);
   }
 
   &:active {
-    transform: scale(0.97);
+    opacity: 0.92;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary, #003399);
+    outline-offset: 3px;
   }
 
   i {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 1;
   }
+}
+
+.carouselBtnPrev {
+  inset-inline-start: -22px;
+}
+
+.carouselBtnNext {
+  inset-inline-end: -22px;
 }
 
 .skeletonCard {
@@ -126,5 +153,21 @@
 
   100% {
     background-position: -200% 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .carouselBtnPrev,
+  .carouselBtnNext {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carouselBtnPrev {
+    inset-inline-start: -18px;
+  }
+
+  .carouselBtnNext {
+    inset-inline-end: -18px;
   }
 }

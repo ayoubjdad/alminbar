@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "media.almashhad.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.sofascore.com",
+        pathname: "/**",
+      },
     ],
   },
 };

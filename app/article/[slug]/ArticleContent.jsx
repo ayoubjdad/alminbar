@@ -1,8 +1,11 @@
 "use client";
 
+import { Fragment } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import AdZone from "../../components/AdZone/AdZone";
+import { AD_SLOTS } from "../../../lib/adSlots";
 import {
   fetchArticleBySlug,
   queryKeys,
@@ -61,10 +64,18 @@ export default function ArticleContent({ slug }) {
       </div>
       <div className={styles.body}>
         {article.body?.map((para, i) => (
-          <p key={i} className={styles.paragraph}>
-            {para}
-          </p>
+          <Fragment key={i}>
+            <p className={styles.paragraph}>{para}</p>
+            {i === 0 ? (
+              <div className={styles.adInline}>
+                <AdZone slot={AD_SLOTS.ARTICLE_INLINE} variant="rectangle" />
+              </div>
+            ) : null}
+          </Fragment>
         ))}
+      </div>
+      <div className={styles.adBottom}>
+        <AdZone slot={AD_SLOTS.ARTICLE_BOTTOM} variant="leaderboard" />
       </div>
     </article>
   );

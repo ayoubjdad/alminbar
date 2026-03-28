@@ -7,14 +7,15 @@ import styles from "./SiteHeader.module.scss";
 
 const NAV = [
   { label: "الرئيسية", href: "/" },
-  { label: "سياسة", href: "/article/israel-trump-plan-iran" },
-  { label: "اقتصاد", href: "/article/oil-markets-volatility" },
-  { label: "رياضة", href: "/article/lebanon-sports-preview" },
-  { label: "أخبار لبنان", href: "/article/nato-hormuz-lebanon" },
-  { label: "العالم العربي", href: "/article/arab-summit-day-two" },
-  { label: "منوعات", href: "/article/variety-media-profiles" },
-  { label: "تكنولوجيا", href: "/article/regional-security-summit" },
-  { label: "صحة", href: "/article/lebanon-government-steps" },
+  { label: "أندية مغربية", href: "/#moroccan-clubs" },
+  { label: "سياسة", href: "/category/politics" },
+  { label: "اقتصاد", href: "/category/economy" },
+  { label: "رياضة", href: "/category/sports" },
+  { label: "أخبار لبنان", href: "/category/lebanon" },
+  { label: "العالم العربي", href: "/category/world" },
+  { label: "منوعات", href: "/category/society" },
+  { label: "تكنولوجيا", href: "/category/tech" },
+  { label: "صحة", href: "/category/health" },
 ];
 
 export default function SiteHeader() {

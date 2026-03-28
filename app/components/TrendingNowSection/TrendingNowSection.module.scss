@@ -1,7 +1,7 @@
 .root {
   width: 100%;
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: var(--content-max, 1250px);
 }
 
 .bar {
@@ -14,7 +14,7 @@
 }
 
 .barTitle {
-  max-width: 1250px;
+  max-width: var(--content-max, 1250px);
   margin: 0 auto;
   font-size: 20px;
   font-weight: 800;
@@ -22,7 +22,7 @@
 }
 
 .inner {
-  max-width: 1250px;
+  max-width: var(--content-max, 1250px);
   margin: 0 auto;
   padding: 0 12px;
   box-sizing: border-box;

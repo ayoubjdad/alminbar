@@ -1,4 +1,5 @@
-import postImage from "../../assets/images/post_large.webp";
+import { DEFAULT_LEAGUE_TABS } from "../../../lib/data/footballRankings";
+import LeagueRankingsPanel from "../LeagueRankingsPanel/LeagueRankingsPanel";
 import styles from "./ReadingLatestVideo.module.scss";
 
 const MOST_READ = [
@@ -22,33 +23,14 @@ const LATEST = [
   },
 ];
 
-const VIDEOS = [
-  "تغطية مباشرة: أبرز مستجدات الملف الإقليمي",
-  "لقاء خاص: قراءة في المشهد الاقتصادي",
-  "وثائقي المشهد: ملف الطاقة والممرات البحرية",
-  "تحليل: ماذا بعد القمة؟",
-  "رياضة المشهد: ملخص الجولة وترتيب الدوري",
-];
-
-export default function ReadingLatestVideo() {
+export default function ReadingLatestVideo({
+  leagueTabs = DEFAULT_LEAGUE_TABS,
+}) {
   return (
     <section className={styles.root}>
-      <div className={styles.videoCol} style={{ backgroundColor: "#2540d8" }}>
-        <div className={styles.videoHeader}>
-          <h2 className={styles.videoTitle}>فيديو</h2>
-        </div>
-        <ul className={styles.videoList}>
-          {VIDEOS.map((line, i) => (
-            <li key={i} className={styles.videoRow}>
-              <span className={styles.videoRank}>{i + 1}</span>
-              <div
-                className={styles.videoThumb}
-                style={{ "--post-bg": `url(${postImage.src})` }}
-              />
-              <p className={styles.videoText}>{line}</p>
-            </li>
-          ))}
-        </ul>
+      <div className={styles.rankingsCol}>
+        <h2 className={styles.colTitle}>ترتيب الدوريات</h2>
+        <LeagueRankingsPanel tabs={leagueTabs} />
       </div>
 
       <div className={styles.col}>

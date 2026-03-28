@@ -7,7 +7,7 @@ export default function NewsCard({ title, date, slug, imageUrl }) {
 
   const inner = (
     <>
-      <div className={styles.thumb}>
+      <div className={styles.thumb} data-news-thumb>
         {imageUrl ? (
           <Image
             src={imageUrl}

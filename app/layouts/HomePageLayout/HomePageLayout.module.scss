@@ -10,3 +10,18 @@
   padding: 0 clamp(8px, 3vw, 12px) clamp(16px, 4vw, 24px);
   box-sizing: border-box;
 }
+
+.adTop,
+.adBottom {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.adTop {
+  margin-bottom: -8px;
+}
+
+.adBottom {
+  margin-top: -8px;
+}
