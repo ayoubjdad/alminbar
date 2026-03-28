@@ -40,7 +40,7 @@
 }
 
 .mostReadText {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.45;
   color: #212121;
@@ -59,7 +59,7 @@
 
 .latestText {
   margin-bottom: 6px;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.45;
   color: #212121;
@@ -98,7 +98,7 @@
 
 .videoRow {
   display: grid;
-  grid-template-columns: 28px 72px 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 10px;
   align-items: center;
   padding: 12px 14px;
@@ -106,22 +106,33 @@
 }
 
 .videoRank {
+  position: absolute;
+  z-index: 1;
   font-size: 16px;
   font-weight: 800;
   color: #ffffff;
+  background: #003399;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
 }
 
 .videoText {
   margin: 0;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.4;
   color: #ffffff;
+  margin-right: 16px;
 }
 
 .videoThumb {
-  width: 72px;
-  height: 48px;
+  margin-right: 16px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: 4px;
   background-image: var(--post-bg);
   background-repeat: no-repeat;
@@ -132,5 +143,17 @@
 @media (max-width: 1024px) {
   .root {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .mostReadText,
+  .latestText,
+  .videoText {
+    font-size: clamp(15px, 4vw, 18px);
+  }
+
+  .colTitle {
+    font-size: clamp(18px, 4.5vw, 22px);
   }
 }

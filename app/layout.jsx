@@ -1,5 +1,6 @@
 import "./globals.css";
 import localFont from "next/font/local";
+import Providers from "./providers";
 
 const ailato = localFont({
   src: [
@@ -22,7 +23,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={ailato.variable}>{children}</body>
+      <body className={ailato.variable}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

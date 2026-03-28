@@ -5,6 +5,8 @@
 .main {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding: 0 12px 8px;
+  gap: clamp(28px, 5vw, 40px);
+  max-width: 100%;
+  padding: 0 clamp(8px, 3vw, 12px) clamp(16px, 4vw, 24px);
+  box-sizing: border-box;
 }

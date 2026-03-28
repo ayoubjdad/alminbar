@@ -4,29 +4,51 @@
   overflow: hidden;
 }
 
+.link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover .headline,
+  &:focus-visible .headline {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #003399;
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+}
+
 .thumb {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
+  overflow: hidden;
   background-color: #e0e0e0;
-  background-image: var(--post-bg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   border-radius: 8px;
 }
 
+.thumbImg {
+  object-fit: cover;
+}
+
 .body {
+  gap: 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   padding: 12px 0 16px 0;
 }
 
 .headline {
-  font-size: 15px;
+  font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 700;
   line-height: 1.4;
   color: #212121;
+  transition: text-decoration-color 0.15s ease;
 }
 
 .date {

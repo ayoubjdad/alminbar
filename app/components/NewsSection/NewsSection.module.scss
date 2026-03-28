@@ -4,6 +4,7 @@
   gap: 16px;
   max-width: 1250px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .headerRow {
@@ -20,9 +21,49 @@
   min-width: 0;
 }
 
-.grid {
+.carouselControls {
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  align-items: center;
+}
+
+.carousel {
   display: flex;
   gap: 20px;
+  width: 100%;
+  padding-bottom: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c5c5c5;
+    border-radius: 4px;
+  }
+}
+
+.slide {
+  flex: 0 0 min(100%, 280px);
+  min-width: min(85vw, 280px);
+  max-width: 100%;
+  scroll-snap-align: start;
+
+  @media (min-width: 641px) {
+    flex: 0 0 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+  }
+
+  @media (min-width: 900px) {
+    flex: 0 0 calc(25% - 15px);
+    min-width: calc(25% - 15px);
+  }
 }
 
 .carouselBtn {
@@ -37,8 +78,53 @@
   background: #003399;
   border: none;
   border-radius: 8px;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  &:hover {
+    background: #002266;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
 
   i {
     font-size: 22px;
+  }
+}
+
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonThumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(90deg, #e8e8e8 25%, #f2f2f2 50%, #e8e8e8 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+.skeletonLine,
+.skeletonLineShort {
+  height: 14px;
+  background: #e8e8e8;
+  border-radius: 4px;
+}
+
+.skeletonLineShort {
+  width: 55%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
   }
 }

@@ -22,3 +22,15 @@
   font-weight: 700;
   color: #fff;
 }
+
+@media (max-width: 900px) {
+  .root {
+    flex: 1 1 calc(50% - 4px);
+    min-height: 140px;
+    height: auto;
+  }
+
+  .title {
+    font-size: clamp(14px, 3.5vw, 17px);
+  }
+}

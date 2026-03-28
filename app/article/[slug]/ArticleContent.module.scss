@@ -1,0 +1,96 @@
+.root {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px 12px 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #003399;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.date {
+  font-size: 13px;
+  color: #757575;
+}
+
+.title {
+  font-size: clamp(22px, 5vw, 32px);
+  font-weight: 800;
+  line-height: 1.35;
+  color: #212121;
+}
+
+.excerpt {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #424242;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 28px;
+  overflow: hidden;
+  background: #e0e0e0;
+  border-radius: 12px;
+}
+
+.heroImg {
+  object-fit: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.paragraph {
+  font-size: 17px;
+  line-height: 1.85;
+  color: #212121;
+}
+
+.notFound {
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.skeletonHero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 24px;
+  background: #e8e8e8;
+  border-radius: 12px;
+}
+
+.skeletonLine,
+.skeletonLineShort {
+  height: 16px;
+  margin-bottom: 12px;
+  background: #e8e8e8;
+  border-radius: 6px;
+}
+
+.skeletonLineShort {
+  width: 40%;
+}

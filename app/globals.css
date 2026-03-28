@@ -49,6 +49,10 @@
   font-weight: 800;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -72,5 +76,7 @@ h6 {
 }
 
 i {
-  display: "flex";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }

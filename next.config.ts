@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "www.almashhad.com",
         pathname: "/static/**",
       },
+      {
+        protocol: "https",
+        hostname: "media.almashhad.com",
+        pathname: "/**",
+      },
     ],
   },
 };
