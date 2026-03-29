@@ -51,7 +51,11 @@ export default function SiteHeader() {
           >
             <i className={`fi fi-rr-menu-burger ${styles.menuIcon}`} />
           </button>
-          <Link href="/" className={styles.logoLink} aria-label={`الرئيسية — ${site.name}`}>
+          <Link
+            href="/"
+            className={styles.logoLink}
+            aria-label={`الرئيسية — ${site.name}`}
+          >
             <Image
               src="https://www.almashhad.com/static/images/LogoBlue.svg"
               width={220}
@@ -83,7 +87,11 @@ export default function SiteHeader() {
 
       <nav className={styles.nav} aria-label="التصنيفات">
         {siteNav.map((item) => (
-          <Link key={item.href + item.label} href={item.href} className={styles.navItem}>
+          <Link
+            key={item.href + item.label}
+            href={item.href}
+            className={styles.navItem}
+          >
             <span className={styles.navLabel}>{item.label}</span>
           </Link>
         ))}

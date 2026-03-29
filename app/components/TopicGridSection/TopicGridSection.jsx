@@ -9,7 +9,7 @@ import {
 } from "../../../lib/staticData";
 import styles from "./TopicGridSection.module.scss";
 
-const COLUMN_SLUGS = ["sports", "tech", "health", "society"];
+const COLUMN_SLUGS = ["botola"];
 
 export default function TopicGridSection() {
   const { categories } = useStaticData();

@@ -1,5 +1,4 @@
 import AdZone from "./components/AdZone/AdZone";
-import CategoriesStrip from "./components/CategoriesStrip/CategoriesStrip";
 import GalleriesFeature from "./components/GalleriesFeature/GalleriesFeature";
 import Hero from "./components/Hero/Hero";
 import HomePageLayout from "./layouts/HomePageLayout/HomePageLayout";
@@ -19,13 +18,12 @@ export default function Home() {
     <HomePageLayout>
       <TodaysGamesSection />
       <MoroccanClubsSection />
-      <CategoriesStrip />
       <Hero />
       <NewsSection title="الدوري والأندية المغربية" sectionKey="club" />
       <NewsSection title="عالم كرة القدم" sectionKey="arab-world" />
       <ReadingLatestVideo />
       <AdZone slot={AD_SLOTS.HOME_INLINE_SECONDARY} variant="leaderboard" />
-      <NewsSection title="رياضة مغربية" sectionKey="lebanon" />
+      <NewsSection title="رياضة مغربية" sectionKey="morocco-sports" />
       <NewsSection title="منوعات رياضية" sectionKey="variety" />
       <VarietiesSection />
       <PollSection />

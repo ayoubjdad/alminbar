@@ -19,7 +19,7 @@ export default function ReadingLatestVideo({ leagueTabs: leagueTabsProp }) {
   const latest = useMemo(() => {
     const rows = [
       ...getArticlesByCategory("arab-world"),
-      ...getArticlesByCategory("lebanon"),
+      ...getArticlesByCategory("morocco-sports"),
     ];
     return rows.slice(0, 5);
   }, []);

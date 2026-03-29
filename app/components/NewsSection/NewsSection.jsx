@@ -11,8 +11,8 @@ import NewsCard from "./NewsCard";
 import styles from "./NewsSection.module.scss";
 
 export default function NewsSection({
-  title = "أخبار لبنان",
-  sectionKey = "lebanon",
+  title = "أخبار رياضية",
+  sectionKey = "morocco-sports",
   showCarouselNav = true,
 }) {
   const scrollRef = useRef(null);
