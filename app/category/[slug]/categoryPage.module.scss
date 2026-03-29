@@ -9,10 +9,10 @@
 
 .breadcrumb {
   font-size: 0.88rem;
-  color: var(--color-text-muted, #9ca3af);
+  color: #64748b;
 
   a {
-    color: var(--color-accent, #00ff66);
+    color: #2563eb;
     text-decoration: none;
 
     &:hover {
@@ -23,7 +23,7 @@
 
 .sep {
   margin-inline: 6px;
-  color: var(--color-border, #333333);
+  color: #cbd5e1;
 }
 
 .header {
@@ -36,20 +36,20 @@
   margin: 0;
   font-size: clamp(1.35rem, 3.5vw, 1.75rem);
   font-weight: 800;
-  color: var(--color-text, #e8e8e8);
+  color: #0f172a;
 }
 
 .desc {
   margin: 0;
   font-size: 0.95rem;
-  color: var(--color-text-muted, #9ca3af);
+  color: #475569;
   line-height: 1.5;
 }
 
 .empty {
   margin: 0;
   padding: 24px 0;
-  color: var(--color-text-muted, #9ca3af);
+  color: #64748b;
   font-size: 0.95rem;
 }
 

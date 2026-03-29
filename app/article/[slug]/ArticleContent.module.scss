@@ -11,7 +11,7 @@
   margin-bottom: 20px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--color-primary, #00ff66);
+  color: #003399;
   text-decoration: none;
 
   &:hover {
@@ -28,107 +28,20 @@
 
 .date {
   font-size: 13px;
-  color: var(--color-text-muted, #9ca3af);
+  color: #757575;
 }
 
 .title {
   font-size: clamp(22px, 5vw, 32px);
   font-weight: 800;
   line-height: 1.35;
-  color: var(--color-text, #e8e8e8);
+  color: #212121;
 }
 
 .excerpt {
   font-size: 16px;
   line-height: 1.6;
-  color: var(--color-text-muted, #9ca3af);
-}
-
-.metaRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-  font-size: 13px;
-  color: var(--color-text-soft, #737373);
-}
-
-.metaItem {
-  &::after {
-    content: "·";
-    margin-inline-start: 12px;
-    color: var(--color-border, #333333);
-  }
-
-  &:last-of-type::after {
-    content: none;
-  }
-}
-
-.draftBadge {
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: rgba(0, 255, 102, 0.12);
-  color: var(--color-accent, #00ff66);
-  font-weight: 700;
-  font-size: 12px;
-}
-
-.tagList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  list-style: none;
-  margin: 8px 0 0;
-  padding: 0;
-}
-
-.tag {
-  font-size: 13px;
-  color: var(--color-text-inverse, #000000);
-  background: rgba(0, 255, 102, 0.2);
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-.relatedBlock {
-  margin-top: 12px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.relatedLabel {
-  font-weight: 700;
-  color: var(--color-text-muted, #9ca3af);
-  margin-inline-end: 8px;
-}
-
-.relatedList {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  li {
-    display: inline;
-
-    &::after {
-      content: "، ";
-    }
-
-    &:last-child::after {
-      content: "";
-    }
-  }
-}
-
-.relatedLink {
-  color: var(--color-accent, #00ff66);
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  color: #424242;
 }
 
 .adUnderTitle {
@@ -159,7 +72,7 @@
   aspect-ratio: 16 / 9;
   margin-bottom: 28px;
   overflow: hidden;
-  background: var(--color-surface-2, #333333);
+  background: #e0e0e0;
   border-radius: 12px;
 }
 
@@ -176,7 +89,7 @@
 .paragraph {
   font-size: 17px;
   line-height: 1.85;
-  color: var(--color-text, #e8e8e8);
+  color: #212121;
 }
 
 .notFound {
@@ -188,7 +101,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   margin-bottom: 24px;
-  background: var(--color-surface-2, #333333);
+  background: #e8e8e8;
   border-radius: 12px;
 }
 
@@ -196,7 +109,7 @@
 .skeletonLineShort {
   height: 16px;
   margin-bottom: 12px;
-  background: var(--color-surface-2, #333333);
+  background: #e8e8e8;
   border-radius: 6px;
 }
 

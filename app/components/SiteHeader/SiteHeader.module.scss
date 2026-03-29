@@ -19,7 +19,7 @@
   justify-content: space-between;
   width: 100%;
   padding: clamp(16px, 4vw, 28px) 0 clamp(12px, 3vw, 18px);
-  border-bottom: 1px solid var(--color-border, #333333);
+  border-bottom: 1px solid #d8d8d8;
 }
 
 .left {
@@ -36,15 +36,14 @@
   background: none;
   border: none;
   border-radius: 8px;
-  color: var(--color-text, #e8e8e8);
   transition: background 0.15s ease;
 
   &:hover {
-    background: rgba(0, 255, 102, 0.08);
+    background: rgba(0, 0, 0, 0.05);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary, #00ff66);
+    outline: 2px solid #003399;
     outline-offset: 2px;
   }
 }
@@ -60,7 +59,7 @@
 }
 
 .logo {
-  width: clamp(160px, 42vw, 160px);
+  width: clamp(160px, 42vw, 220px);
   height: auto;
 }
 
@@ -75,11 +74,10 @@
 .liveBtn {
   padding: 6px 14px;
   font-size: clamp(12px, 2.5vw, 14px);
-  font-weight: 700;
-  color: var(--color-text-inverse, #000000);
+  color: #fff;
   white-space: nowrap;
   cursor: pointer;
-  background-color: var(--color-accent, #00ff66);
+  background-color: #d00000;
   border: none;
   border-radius: 8px;
 }
@@ -88,7 +86,7 @@
   display: flex;
   max-width: 100%;
   overflow: hidden;
-  border: 1px solid var(--color-border, #333333);
+  border: 1px solid #d0d0d0;
   border-radius: 8px;
 }
 
@@ -97,8 +95,7 @@
   min-width: 0;
   padding: 8px 10px;
   font-size: 14px;
-  color: var(--color-text, #e8e8e8);
-  background-color: var(--color-surface-2, #333333);
+  background-color: #fff;
   border: none;
 }
 
@@ -107,16 +104,16 @@
   padding: 8px 14px;
   font-size: clamp(12px, 2.5vw, 14px);
   font-weight: 700;
-  color: var(--color-text-inverse, #000000);
+  color: #fff;
   white-space: nowrap;
   cursor: pointer;
-  background-color: var(--color-accent, #00ff66);
+  background-color: #d00000;
   border: none;
 }
 
 .bell {
   font-size: 22px;
-  color: var(--color-text-muted, #9ca3af);
+  color: #424242;
 }
 
 .nav {
@@ -138,14 +135,14 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary, #00ff66);
+    outline: 2px solid #003399;
     outline-offset: 2px;
     border-radius: 4px;
   }
 }
 
 .navLabel {
-  color: var(--color-text, #e8e8e8);
+  color: #212121;
 }
 
 .backdrop {
@@ -154,7 +151,7 @@
   z-index: 90;
   display: none;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.45);
   border: none;
 }
 
@@ -169,8 +166,8 @@
   max-width: 100%;
   height: 100%;
   padding: 0;
-  background: var(--color-surface, #1a1a1a);
-  box-shadow: -6px 0 28px rgba(0, 0, 0, 0.45);
+  background: #fff;
+  box-shadow: -6px 0 28px rgba(0, 0, 0, 0.18);
   transition: transform 0.28s ease;
   transform: translateX(100%);
 }
@@ -184,13 +181,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 18px;
-  border-bottom: 1px solid var(--color-border, #333333);
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .drawerTitle {
   font-size: 18px;
   font-weight: 800;
-  color: var(--color-text, #e8e8e8);
+  color: #212121;
 }
 
 .drawerClose {
@@ -201,14 +198,14 @@
   height: 40px;
   padding: 0;
   font-size: 18px;
-  color: var(--color-text, #e8e8e8);
+  color: #212121;
   cursor: pointer;
   background: none;
   border: none;
   border-radius: 8px;
 
   &:hover {
-    background: rgba(0, 255, 102, 0.1);
+    background: rgba(0, 0, 0, 0.06);
   }
 }
 
@@ -224,18 +221,18 @@
   padding: 14px 14px;
   font-size: 16px;
   font-weight: 700;
-  color: var(--color-text, #e8e8e8);
+  color: #212121;
   text-decoration: none;
   border-radius: 8px;
   transition: background 0.15s ease;
 
   &:hover,
   &:focus-visible {
-    background: rgba(0, 255, 102, 0.1);
+    background: rgba(0, 51, 153, 0.08);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary, #00ff66);
+    outline: 2px solid #003399;
     outline-offset: 0;
   }
 }

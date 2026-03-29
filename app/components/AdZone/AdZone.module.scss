@@ -5,12 +5,8 @@
   max-width: var(--content-max, 1250px);
   margin-inline: auto;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    var(--color-surface, #1a1a1a) 0%,
-    var(--color-bg, #000000) 100%
-  );
-  border: 1px dashed var(--color-border-strong, #404040);
+  background: linear-gradient(180deg, #f0f2f5 0%, #e8eaee 100%);
+  border: 1px dashed var(--color-border-strong, #cfd4dc);
   border-radius: var(--radius-md, 10px);
   box-sizing: border-box;
 }
@@ -30,7 +26,7 @@
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: var(--color-text-muted, #9ca3af);
+  color: var(--color-text-muted, #616161);
   text-transform: uppercase;
 }
 
@@ -38,7 +34,7 @@
   font-size: 10px;
   font-weight: 600;
   font-family: ui-monospace, monospace;
-  color: var(--color-text-soft, #737373);
+  color: var(--color-text-soft, #9e9e9e);
   word-break: break-all;
   text-align: center;
 }
