@@ -2,20 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    /** أي مصدر https/http — للتطوير؛ في الإنتاج يُفضّل تقييد النطاقات */
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "www.almashhad.com",
-        pathname: "/static/**",
-      },
-      {
-        protocol: "https",
-        hostname: "media.almashhad.com",
+        hostname: "**",
         pathname: "/**",
       },
       {
-        protocol: "https",
-        hostname: "img.sofascore.com",
+        protocol: "http",
+        hostname: "**",
         pathname: "/**",
       },
     ],

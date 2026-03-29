@@ -4,9 +4,11 @@ import { notFound } from "next/navigation";
 import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import NewsCard from "../../components/NewsSection/NewsCard";
 import { getAllClubSlugs, getClubBySlug } from "../../../lib/moroccanClubs";
-import { getArticlesByClub } from "../../../lib/newsData";
+import { getArticlesByClubServer } from "../../../lib/cms/articleQueries.server";
 import { SITE } from "../../../lib/staticData/site";
 import styles from "./clubPage.module.scss";
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return getAllClubSlugs().map((slug) => ({ slug }));
@@ -27,7 +29,7 @@ export default async function ClubPage({ params }) {
   const club = getClubBySlug(slug);
   if (!club) notFound();
 
-  const articles = getArticlesByClub(slug);
+  const articles = getArticlesByClubServer(slug);
   const r = club.ranking;
 
   return (

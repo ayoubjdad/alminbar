@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import NewsCard from "../../components/NewsSection/NewsCard";
 import { getAllCategorySlugs, getCategoryBySlug } from "../../../lib/categories";
-import { getArticlesBySiteCategory } from "../../../lib/newsData";
+import { getArticlesBySiteCategoryServer } from "../../../lib/cms/articleQueries.server";
 import { SITE } from "../../../lib/staticData/site";
 import styles from "./categoryPage.module.scss";
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return getAllCategorySlugs().map((slug) => ({ slug }));
@@ -26,7 +28,7 @@ export default async function CategoryPage({ params }) {
   const cat = getCategoryBySlug(slug);
   if (!cat) notFound();
 
-  const articles = getArticlesBySiteCategory(slug);
+  const articles = getArticlesBySiteCategoryServer(slug);
 
   return (
     <HomePageLayout>

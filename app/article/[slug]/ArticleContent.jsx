@@ -51,6 +51,50 @@ export default function ArticleContent({ slug }) {
         {article.excerpt ? (
           <p className={styles.excerpt}>{article.excerpt}</p>
         ) : null}
+        <div className={styles.metaRow}>
+          {article.authorNameAr ? (
+            <span className={styles.metaItem}>بقلم: {article.authorNameAr}</span>
+          ) : null}
+          {article.readTimeMinutes ? (
+            <span className={styles.metaItem}>{article.readTimeMinutes} دقيقة قراءة</span>
+          ) : null}
+          {article.cmsMeta?.status === "draft" ? (
+            <span className={styles.draftBadge}>مسودة</span>
+          ) : null}
+        </div>
+        {article.tags?.length ? (
+          <ul className={styles.tagList} aria-label="وسوم">
+            {article.tags.map((t) => (
+              <li key={t} className={styles.tag}>
+                #{t}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {article.linkedClubs?.length ? (
+          <div className={styles.relatedBlock}>
+            <span className={styles.relatedLabel}>أندية ذات صلة:</span>
+            <ul className={styles.relatedList}>
+              {article.linkedClubs.map((clubSlug) => (
+                <li key={clubSlug}>
+                  <Link href={`/club/${clubSlug}`} className={styles.relatedLink}>
+                    {clubSlug.replace(/-/g, " ")}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+        {article.relatedLeagues?.length ? (
+          <div className={styles.relatedBlock}>
+            <span className={styles.relatedLabel}>مسابقات:</span>
+            <ul className={styles.relatedList}>
+              {article.relatedLeagues.map((lg) => (
+                <li key={lg.slug}>{lg.labelAr ?? lg.slug}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </header>
       <div className={styles.hero}>
         <Image

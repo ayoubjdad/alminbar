@@ -23,7 +23,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: var(--color-surface-2, #333333);
     border-radius: 4px;
   }
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
 import { useStaticData } from "../../../lib/staticData";
 import styles from "./SiteHeader.module.scss";
+import logo from "../../assets/logos/logo.png";
 
 export default function SiteHeader() {
   const { siteNav, site } = useStaticData();
@@ -57,9 +58,7 @@ export default function SiteHeader() {
             aria-label={`الرئيسية — ${site.name}`}
           >
             <Image
-              src="https://www.almashhad.com/static/images/LogoBlue.svg"
-              width={220}
-              height={50}
+              src={logo}
               alt={site.name}
               priority
               className={styles.logo}

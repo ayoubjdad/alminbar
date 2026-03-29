@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
-  getArticlesByCategory,
-  getTrendingArticles,
-  useStaticData,
-} from "../../../lib/staticData";
+  fetchNewsByCategory,
+  fetchTrendingNews,
+  queryKeys,
+} from "../../../lib/queries/newsQueries";
+import { useStaticData } from "../../../lib/staticData";
 import LeagueRankingsPanel from "../LeagueRankingsPanel/LeagueRankingsPanel";
 import styles from "./ReadingLatestVideo.module.scss";
 
@@ -14,15 +16,30 @@ export default function ReadingLatestVideo({ leagueTabs: leagueTabsProp }) {
   const { leagueTabs: leagueTabsFromContext } = useStaticData();
   const leagueTabs = leagueTabsProp ?? leagueTabsFromContext;
 
-  const mostRead = useMemo(() => getTrendingArticles().slice(0, 5), []);
+  const { data: mostRead = [] } = useQuery({
+    queryKey: queryKeys.trending(),
+    queryFn: fetchTrendingNews,
+  });
+
+  const { data: arabWorld = [] } = useQuery({
+    queryKey: queryKeys.news("arab-world"),
+    queryFn: () => fetchNewsByCategory("arab-world"),
+  });
+
+  const { data: moroccoSports = [] } = useQuery({
+    queryKey: queryKeys.news("morocco-sports"),
+    queryFn: () => fetchNewsByCategory("morocco-sports"),
+  });
 
   const latest = useMemo(() => {
-    const rows = [
-      ...getArticlesByCategory("arab-world"),
-      ...getArticlesByCategory("morocco-sports"),
-    ];
+    const rows = [...arabWorld, ...moroccoSports];
     return rows.slice(0, 5);
-  }, []);
+  }, [arabWorld, moroccoSports]);
+
+  const trendingSlice = useMemo(
+    () => mostRead.slice(0, 5),
+    [mostRead],
+  );
 
   return (
     <section className={styles.root} id="league-rankings">
@@ -34,7 +51,7 @@ export default function ReadingLatestVideo({ leagueTabs: leagueTabsProp }) {
       <div className={styles.col}>
         <h2 className={styles.colTitle}>الأكثر متابعة</h2>
         <ol className={styles.mostReadList}>
-          {mostRead.map((article, i) => (
+          {trendingSlice.map((article, i) => (
             <li key={article.slug} className={styles.mostReadItem}>
               <Link href={`/article/${article.slug}`} className={styles.mostReadRow}>
                 <span className={styles.num}>{i + 1}</span>

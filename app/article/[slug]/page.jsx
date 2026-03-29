@@ -1,15 +1,20 @@
 import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
-import { getAllSlugs, getArticleBySlug } from "../../../lib/newsData";
+import {
+  getMergedArticlesServer,
+  getArticleBySlugServer,
+} from "../../../lib/cms/getMergedArticlesServer";
 import { SITE } from "../../../lib/staticData/site";
 import ArticleContent from "./ArticleContent";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }));
+  return getMergedArticlesServer().map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const article = getArticleBySlugServer(slug);
   if (!article) {
     return { title: "المقال غير موجود" };
   }

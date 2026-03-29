@@ -1,15 +1,17 @@
 "use client";
 
-import { useMemo } from "react";
 import Link from "next/link";
+import { useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import postImage from "../../assets/images/post_large.webp";
 import {
-  getArticlesBySiteCategory,
-  useStaticData,
-} from "../../../lib/staticData";
+  fetchArticlesBySiteCategory,
+  queryKeys,
+} from "../../../lib/queries/newsQueries";
+import { useStaticData } from "../../../lib/staticData";
 import styles from "./TopicGridSection.module.scss";
 
-const COLUMN_SLUGS = ["botola"];
+const COLUMN_SLUGS = ["botola", "morocco", "international", "matches"];
 
 export default function TopicGridSection() {
   const { categories } = useStaticData();
@@ -19,18 +21,45 @@ export default function TopicGridSection() {
     [categories],
   );
 
+  const qBotola = useQuery({
+    queryKey: queryKeys.siteCategory("botola"),
+    queryFn: () => fetchArticlesBySiteCategory("botola"),
+  });
+  const qMorocco = useQuery({
+    queryKey: queryKeys.siteCategory("morocco"),
+    queryFn: () => fetchArticlesBySiteCategory("morocco"),
+  });
+  const qIntl = useQuery({
+    queryKey: queryKeys.siteCategory("international"),
+    queryFn: () => fetchArticlesBySiteCategory("international"),
+  });
+  const qMatches = useQuery({
+    queryKey: queryKeys.siteCategory("matches"),
+    queryFn: () => fetchArticlesBySiteCategory("matches"),
+  });
+
+  const byColumnKey = useMemo(
+    () => ({
+      botola: qBotola.data ?? [],
+      morocco: qMorocco.data ?? [],
+      international: qIntl.data ?? [],
+      matches: qMatches.data ?? [],
+    }),
+    [qBotola.data, qMorocco.data, qIntl.data, qMatches.data],
+  );
+
   const columns = useMemo(
     () =>
       COLUMN_SLUGS.map((slug) => {
         const cat = bySlug[slug];
-        const items = getArticlesBySiteCategory(slug);
+        const items = byColumnKey[slug] ?? [];
         return {
           cat,
           featured: items[0],
           rest: items.slice(1, 4),
         };
       }),
-    [bySlug],
+    [bySlug, byColumnKey],
   );
 
   return (

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SITE } from "../../../lib/staticData/site";
 import styles from "./SiteFooter.module.scss";
 
@@ -31,6 +32,9 @@ export default function SiteFooter() {
           <p className={styles.tagline}>{SITE.description}</p>
           <p className={styles.copy}>
             © {new Date().getFullYear()} {SITE.name}. جميع الحقوق محفوظة.
+          </p>
+          <p className={styles.dashboardLink}>
+            <Link href="/dashboard">لوحة التحرير</Link>
           </p>
         </div>
 
