@@ -1,10 +1,5 @@
-import {
-  parseHesportTodaysMatches,
-  parseElbotolaTodaysMatches,
-  mergeTodaysMatches,
-} from "../../../../lib/suggestions/todaysMatches";
+import { parseElbotolaTodaysMatches } from "../../../../lib/suggestions/todaysMatches";
 
-const HESPORT_HOME = "https://www.hesport.com/";
 const ELBOTOLA_HOME = "https://www.elbotola.com/";
 
 async function fetchHtml(url) {
@@ -31,42 +26,29 @@ function toPublicMatch(m) {
 }
 
 /**
- * GET — server-fetch Hesport + Elbotola homepages, parse «مباريات اليوم», merge.
+ * GET — server-fetch Elbotola homepage, parse «مباريات اليوم» (#js_important_today).
  */
 export async function GET() {
-  let hesportHtml = "";
   let elbotolaHtml = "";
-  const errors = [];
-
-  try {
-    hesportHtml = await fetchHtml(HESPORT_HOME);
-  } catch (e) {
-    errors.push(
-      `hesport: ${e instanceof Error ? e.message : String(e)}`,
-    );
-  }
+  let error = null;
 
   try {
     elbotolaHtml = await fetchHtml(ELBOTOLA_HOME);
   } catch (e) {
-    errors.push(
-      `elbotola: ${e instanceof Error ? e.message : String(e)}`,
-    );
+    error = e instanceof Error ? e.message : String(e);
   }
 
-  const hesport = parseHesportTodaysMatches(hesportHtml);
-  const elbotola = parseElbotolaTodaysMatches(elbotolaHtml);
-  const merged = mergeTodaysMatches(hesport, elbotola);
-  const matches = merged.map(toPublicMatch);
+  const rows = parseElbotolaTodaysMatches(elbotolaHtml);
+  rows.sort((a, b) => (a.sortAt || 0) - (b.sortAt || 0));
+  const matches = rows.map(toPublicMatch);
 
   return Response.json({
-    ok: true,
+    ok: !error,
     matches,
     counts: {
-      hesport: hesport.length,
-      elbotola: elbotola.length,
+      elbotola: rows.length,
       total: matches.length,
     },
-    ...(errors.length ? { errors } : {}),
+    ...(error ? { errors: [`elbotola: ${error}`] } : {}),
   });
 }

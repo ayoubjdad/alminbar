@@ -34,8 +34,8 @@ export default function TodaysGamesSection() {
     liveMatches === undefined
       ? staticMatches
       : liveMatches.length > 0
-        ? liveMatches
-        : staticMatches;
+      ? liveMatches
+      : staticMatches;
   const todayLabel = new Intl.DateTimeFormat("ar-MA-u-ca-gregory", {
     weekday: "long",
     day: "numeric",
@@ -107,29 +107,28 @@ export default function TodaysGamesSection() {
               role="listitem"
             >
               <article className={styles.card}>
-                <div className={styles.league}>{m.league}</div>
+                {/* <div className={styles.league}>{m.league}</div> */}
                 <div className={styles.teams}>
                   <div className={styles.teamContainer}>
-                    <Image
-                      // src={`https://img.sofascore.com/api/v1/team/${m.home.id}/image`}
-                      src="https://img.sofascore.com/api/v1/team/41757/image"
+                    {/* <Image
+                      src={`https://images.elbotola.com/stats/logos/j1l4rjnho9jm7vx.png`}
                       alt={m.home}
                       width={48}
                       height={48}
                       className={styles.teamLogo}
-                    />
+                    /> */}
                     <span className={styles.team}>{m.home}</span>
                   </div>
                   <span className={styles.vs}>ضد</span>
                   <div className={styles.teamContainer}>
-                    <Image
+                    {/* <Image
                       // src={`https://img.sofascore.com/api/v1/team/${m.away.id}/image`}
                       src="https://img.sofascore.com/api/v1/team/41757/image"
                       alt={m.away}
                       width={48}
                       height={48}
                       className={styles.teamLogo}
-                    />
+                    /> */}
                     <span className={styles.team}>{m.away}</span>
                   </div>
                 </div>

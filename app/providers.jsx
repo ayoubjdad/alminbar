@@ -14,7 +14,7 @@ export default function Providers({ children }) {
             refetchOnWindowFocus: false,
           },
         },
-      }),
+      })
   );
 
   return (
