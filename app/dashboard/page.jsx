@@ -1,4 +1,3 @@
-import HomePageLayout from "../layouts/HomePageLayout/HomePageLayout";
 import DashboardClient from "./DashboardClient";
 
 export const metadata = {
@@ -7,9 +6,5 @@ export const metadata = {
 };
 
 export default function DashboardPage() {
-  return (
-    <HomePageLayout>
-      <DashboardClient />
-    </HomePageLayout>
-  );
+  return <DashboardClient />;
 }

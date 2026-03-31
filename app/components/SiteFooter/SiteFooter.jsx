@@ -2,19 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { SITE } from "../../../lib/staticData/site";
 import styles from "./SiteFooter.module.scss";
+import logo from "../../assets/logos/logo.png";
 
 export default function SiteFooter() {
   return (
     <footer className={styles.root}>
       <div className={styles.inner}>
         <div className={styles.col}>
-          <Image
-            src="https://www.almashhad.com/static/images/LogoBlue.svg"
-            width={180}
-            height={42}
-            alt={SITE.name}
-            className={styles.logo}
-          />
+          <Image src={logo} alt={SITE.name} className={styles.logo} />
           <div className={styles.social}>
             <a href="#" className={styles.socialLink} aria-label="X">
               X

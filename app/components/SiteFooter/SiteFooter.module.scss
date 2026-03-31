@@ -22,8 +22,8 @@
 }
 
 .logo {
+  width: clamp(160px, 42vw, 160px);
   height: auto;
-  filter: brightness(0) invert(1);
 }
 
 .social {

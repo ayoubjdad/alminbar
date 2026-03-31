@@ -8,9 +8,12 @@ import {
   slugifyTitle,
 } from "../../lib/cms/normalizeArticle";
 import styles from "./dashboard.module.scss";
+import ArticlesSuggestions from "./articles-suggestions/ArticlesSuggestions";
 
 const TABS = [
-  { id: "posts", label: "مقالات" },
+  { id: "allPosts", label: "مقالات" },
+  { id: "posts", label: "إضافة مقالات" },
+  { id: "suggestions", label: "اقتراح" },
   { id: "categories", label: "تصنيفات" },
   { id: "tags", label: "وسوم" },
   { id: "clubs", label: "أندية" },
@@ -65,7 +68,7 @@ function toDatetimeLocal(iso) {
 
 export default function DashboardClient() {
   const router = useRouter();
-  const [tab, setTab] = useState("posts");
+  const [tab, setTab] = useState("suggestions");
   const [meta, setMeta] = useState(null);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -174,8 +177,7 @@ export default function DashboardClient() {
     setSaving(true);
     setMessage("");
     try {
-      const slug =
-        form.slug.trim() || slugifyTitle(form.title || "article");
+      const slug = form.slug.trim() || slugifyTitle(form.title || "article");
       const publishedAt = form.publishedAt
         ? new Date(form.publishedAt).toISOString()
         : new Date().toISOString();
@@ -236,9 +238,12 @@ export default function DashboardClient() {
 
   const onDelete = async (slug) => {
     if (!confirm(`حذف «${slug}» من الملف المحلي؟`)) return;
-    const res = await fetch(`/api/cms/articles?slug=${encodeURIComponent(slug)}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(
+      `/api/cms/articles?slug=${encodeURIComponent(slug)}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (res.ok) {
       await load();
       router.refresh();
@@ -263,7 +268,8 @@ export default function DashboardClient() {
       clubSlug: a.clubSlug ?? "",
       siteCategory: a.siteCategory ?? "",
       authorNameAr: a.authorNameAr ?? "",
-      readTimeMinutes: a.readTimeMinutes != null ? String(a.readTimeMinutes) : "",
+      readTimeMinutes:
+        a.readTimeMinutes != null ? String(a.readTimeMinutes) : "",
       seoTitle: a.cmsMeta?.seoTitle ?? "",
       seoDescription: a.cmsMeta?.seoDescription ?? "",
       status: a.cmsMeta?.status ?? "published",
@@ -282,7 +288,8 @@ export default function DashboardClient() {
         <div>
           <h1 className={styles.h1}>لوحة تحرير الأخبار</h1>
           <p className={styles.lead}>
-            المقالات: <code className={styles.code}>data/cms-user-articles.json</code>
+            المقالات:{" "}
+            <code className={styles.code}>data/cms-user-articles.json</code>
             {" — "}
             السجل: <code className={styles.code}>data/cms-registry.json</code>
           </p>
@@ -309,313 +316,315 @@ export default function DashboardClient() {
         ))}
       </div>
 
-      {tab === "posts" ? (
-        <>
-          <form className={styles.form} onSubmit={onSubmit}>
-            <fieldset className={styles.fieldset}>
-              <legend>المحتوى</legend>
-              <label className={styles.label}>
-                العنوان *
-                <input
-                  className={styles.input}
-                  value={form.title}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, title: e.target.value }))
-                  }
-                  required
-                />
-              </label>
-              <label className={styles.label}>
-                المسار (slug)
-                <input
-                  className={styles.input}
-                  dir="ltr"
-                  placeholder="يُولَّد تلقائياً إن تُرك فارغاً"
-                  value={form.slug}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, slug: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                تاريخ النشر (للترتيب)
-                <input
-                  className={styles.input}
-                  type="datetime-local"
-                  value={form.publishedAt}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, publishedAt: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                التاريخ المعروض (نص عربي)
-                <input
-                  className={styles.input}
-                  value={form.date}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, date: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                المقدمة (excerpt)
-                <textarea
-                  className={styles.textarea}
-                  rows={2}
-                  value={form.excerpt}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, excerpt: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                رابط الصورة
-                <input
-                  className={styles.input}
-                  dir="ltr"
-                  value={form.image}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, image: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                النص — فقرة لكل كتلة، فارغ بين الفقرات
-                <textarea
-                  className={styles.textarea}
-                  rows={10}
-                  value={form.bodyText}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, bodyText: e.target.value }))
-                  }
-                />
-              </label>
-            </fieldset>
+      {tab === "suggestions" ? <ArticlesSuggestions /> : null}
 
-            <fieldset className={styles.fieldset}>
-              <legend>تصنيف ووسوم</legend>
-              <label className={styles.label}>
-                التصنيف التحريري
-                <select
-                  className={styles.select}
-                  value={form.category}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, category: e.target.value }))
-                  }
-                >
-                  {editorial.map((c) => (
-                    <option key={c.value} value={c.value}>
-                      {c.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label className={styles.label}>
-                الوسوم (مفصولة بفاصلة أو أضف من الأزرار)
-                <input
-                  className={styles.input}
-                  value={form.tags}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, tags: e.target.value }))
-                  }
-                />
-              </label>
-              <div className={styles.tagPickRow}>
-                <span className={styles.tagPickLabel}>إضافة سريعة:</span>
-                {(meta?.tags ?? []).slice(0, 24).map((t) => (
-                  <button
-                    key={t.slug}
-                    type="button"
-                    className={styles.tagPickBtn}
-                    onClick={() => appendTag(t.slug)}
-                  >
-                    + {t.nameAr}
-                  </button>
+      {tab === "allPosts" ? (
+        <section className={styles.listSection}>
+          <h2 className={styles.h2}>
+            المقالات (الأحدث أولاً — {articles.length})
+          </h2>
+          <div className={styles.tableWrap}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>التاريخ</th>
+                  <th>المسار</th>
+                  <th>العنوان</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {articles.map((a) => (
+                  <tr key={a.slug}>
+                    <td className={styles.dateCell}>{formatArticleDate(a)}</td>
+                    <td className={styles.mono} dir="ltr">
+                      {a.slug}
+                    </td>
+                    <td>{a.title}</td>
+                    <td className={styles.rowActions}>
+                      <button
+                        type="button"
+                        className={styles.linkBtn}
+                        onClick={() => onEdit(a)}
+                      >
+                        تعديل
+                      </button>
+                      <a className={styles.linkBtn} href={`/article/${a.slug}`}>
+                        عرض
+                      </a>
+                      <button
+                        type="button"
+                        className={styles.danger}
+                        onClick={() => onDelete(a.slug)}
+                      >
+                        حذف
+                      </button>
+                    </td>
+                  </tr>
                 ))}
-              </div>
-              <label className={styles.label}>
-                قسم الموقع (اختياري)
-                <input
-                  className={styles.input}
-                  placeholder="botola | morocco | international | matches"
-                  value={form.siteCategory}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, siteCategory: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                نادي رئيسي (slug)
-                <input
-                  className={styles.input}
-                  dir="ltr"
-                  placeholder="wydad-casablanca"
-                  value={form.clubSlug}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, clubSlug: e.target.value }))
-                  }
-                />
-              </label>
-            </fieldset>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ) : null}
 
-            <fieldset className={styles.fieldset}>
-              <legend>أندية مرتبطة</legend>
+      {tab === "posts" ? (
+        <form className={styles.form} onSubmit={onSubmit}>
+          <fieldset className={styles.fieldset}>
+            <legend>المحتوى</legend>
+            <label className={styles.label}>
+              العنوان *
+              <input
+                className={styles.input}
+                value={form.title}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, title: e.target.value }))
+                }
+                required
+              />
+            </label>
+            <label className={styles.label}>
+              المسار (slug)
+              <input
+                className={styles.input}
+                dir="ltr"
+                placeholder="يُولَّد تلقائياً إن تُرك فارغاً"
+                value={form.slug}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, slug: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              تاريخ النشر (للترتيب)
+              <input
+                className={styles.input}
+                type="datetime-local"
+                value={form.publishedAt}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, publishedAt: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              التاريخ المعروض (نص عربي)
+              <input
+                className={styles.input}
+                value={form.date}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, date: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              المقدمة (excerpt)
+              <textarea
+                className={styles.textarea}
+                rows={2}
+                value={form.excerpt}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, excerpt: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              رابط الصورة
+              <input
+                className={styles.input}
+                dir="ltr"
+                value={form.image}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, image: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              النص — فقرة لكل كتلة، فارغ بين الفقرات
+              <textarea
+                className={styles.textarea}
+                rows={10}
+                value={form.bodyText}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, bodyText: e.target.value }))
+                }
+              />
+            </label>
+          </fieldset>
+
+          <fieldset className={styles.fieldset}>
+            <legend>تصنيف ووسوم</legend>
+            <label className={styles.label}>
+              التصنيف التحريري
+              <select
+                className={styles.select}
+                value={form.category}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, category: e.target.value }))
+                }
+              >
+                {editorial.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.label}>
+              الوسوم (مفصولة بفاصلة أو أضف من الأزرار)
+              <input
+                className={styles.input}
+                value={form.tags}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, tags: e.target.value }))
+                }
+              />
+            </label>
+            <div className={styles.tagPickRow}>
+              <span className={styles.tagPickLabel}>إضافة سريعة:</span>
+              {(meta?.tags ?? []).slice(0, 24).map((t) => (
+                <button
+                  key={t.slug}
+                  type="button"
+                  className={styles.tagPickBtn}
+                  onClick={() => appendTag(t.slug)}
+                >
+                  + {t.nameAr}
+                </button>
+              ))}
+            </div>
+            <label className={styles.label}>
+              قسم الموقع (اختياري)
+              <input
+                className={styles.input}
+                placeholder="botola | morocco | international | matches"
+                value={form.siteCategory}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, siteCategory: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              نادي رئيسي (slug)
+              <input
+                className={styles.input}
+                dir="ltr"
+                placeholder="wydad-casablanca"
+                value={form.clubSlug}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, clubSlug: e.target.value }))
+                }
+              />
+            </label>
+          </fieldset>
+
+          <fieldset className={styles.fieldset}>
+            <legend>أندية مرتبطة</legend>
+            <div className={styles.chips}>
+              {clubOptions.map((c) => (
+                <label key={c.slug} className={styles.chip}>
+                  <input
+                    type="checkbox"
+                    checked={form.linkedClubs.includes(c.slug)}
+                    onChange={() => toggleClub(c.slug)}
+                  />
+                  <span>{c.nameAr ?? c.name}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset className={styles.fieldset}>
+            <legend>دوريات / مسابقات</legend>
+            <div className={styles.chipsScroll}>
               <div className={styles.chips}>
-                {clubOptions.map((c) => (
-                  <label key={c.slug} className={styles.chip}>
+                {leagueOptions.map((l) => (
+                  <label key={l.slug} className={styles.chip}>
                     <input
                       type="checkbox"
-                      checked={form.linkedClubs.includes(c.slug)}
-                      onChange={() => toggleClub(c.slug)}
+                      checked={form.relatedLeagueSlugs.includes(l.slug)}
+                      onChange={() => toggleLeague(l.slug)}
                     />
-                    <span>{c.nameAr ?? c.name}</span>
+                    <span>{l.labelAr}</span>
                   </label>
                 ))}
               </div>
-            </fieldset>
-
-            <fieldset className={styles.fieldset}>
-              <legend>دوريات / مسابقات</legend>
-              <div className={styles.chipsScroll}>
-                <div className={styles.chips}>
-                  {leagueOptions.map((l) => (
-                    <label key={l.slug} className={styles.chip}>
-                      <input
-                        type="checkbox"
-                        checked={form.relatedLeagueSlugs.includes(l.slug)}
-                        onChange={() => toggleLeague(l.slug)}
-                      />
-                      <span>{l.labelAr}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset className={styles.fieldset}>
-              <legend>ميتا إضافية</legend>
-              <label className={styles.label}>
-                اسم المحرر
-                <input
-                  className={styles.input}
-                  value={form.authorNameAr}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, authorNameAr: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                زمن القراءة (دقائق)
-                <input
-                  className={styles.input}
-                  type="number"
-                  min={1}
-                  value={form.readTimeMinutes}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, readTimeMinutes: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                SEO — عنوان
-                <input
-                  className={styles.input}
-                  value={form.seoTitle}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, seoTitle: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                SEO — وصف
-                <textarea
-                  className={styles.textarea}
-                  rows={2}
-                  value={form.seoDescription}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, seoDescription: e.target.value }))
-                  }
-                />
-              </label>
-              <label className={styles.label}>
-                الحالة
-                <select
-                  className={styles.select}
-                  value={form.status}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, status: e.target.value }))
-                  }
-                >
-                  <option value="published">منشور</option>
-                  <option value="draft">مسودة</option>
-                </select>
-              </label>
-            </fieldset>
-
-            <div className={styles.actions}>
-              <button type="submit" className={styles.submit} disabled={saving}>
-                {saving ? "جاري الحفظ…" : "حفظ المقال"}
-              </button>
             </div>
-          </form>
+          </fieldset>
 
-          <section className={styles.listSection}>
-            <h2 className={styles.h2}>
-              المقالات (الأحدث أولاً — {articles.length})
-            </h2>
-            <div className={styles.tableWrap}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th>التاريخ</th>
-                    <th>المسار</th>
-                    <th>العنوان</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {articles.map((a) => (
-                    <tr key={a.slug}>
-                      <td className={styles.dateCell}>{formatArticleDate(a)}</td>
-                      <td className={styles.mono} dir="ltr">
-                        {a.slug}
-                      </td>
-                      <td>{a.title}</td>
-                      <td className={styles.rowActions}>
-                        <button
-                          type="button"
-                          className={styles.linkBtn}
-                          onClick={() => onEdit(a)}
-                        >
-                          تعديل
-                        </button>
-                        <a className={styles.linkBtn} href={`/article/${a.slug}`}>
-                          عرض
-                        </a>
-                        <button
-                          type="button"
-                          className={styles.danger}
-                          onClick={() => onDelete(a.slug)}
-                        >
-                          حذف
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        </>
+          <fieldset className={styles.fieldset}>
+            <legend>ميتا إضافية</legend>
+            <label className={styles.label}>
+              اسم المحرر
+              <input
+                className={styles.input}
+                value={form.authorNameAr}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, authorNameAr: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              زمن القراءة (دقائق)
+              <input
+                className={styles.input}
+                type="number"
+                min={1}
+                value={form.readTimeMinutes}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, readTimeMinutes: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              SEO — عنوان
+              <input
+                className={styles.input}
+                value={form.seoTitle}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, seoTitle: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              SEO — وصف
+              <textarea
+                className={styles.textarea}
+                rows={2}
+                value={form.seoDescription}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, seoDescription: e.target.value }))
+                }
+              />
+            </label>
+            <label className={styles.label}>
+              الحالة
+              <select
+                className={styles.select}
+                value={form.status}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, status: e.target.value }))
+                }
+              >
+                <option value="published">منشور</option>
+                <option value="draft">مسودة</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <div className={styles.actions}>
+            <button type="submit" className={styles.submit} disabled={saving}>
+              {saving ? "جاري الحفظ…" : "حفظ المقال"}
+            </button>
+          </div>
+        </form>
       ) : null}
 
       {tab === "categories" ? (
         <section className={styles.registrySection}>
           <h2 className={styles.h2}>تصنيفات تحريرية إضافية</h2>
           <p className={styles.registryHint}>
-            تُدمج مع التصنيفات الافتراضية في نموذج «مقال جديد». القيمة (value) بالإنجليزية
-            بدون مسافات.
+            تُدمج مع التصنيفات الافتراضية في نموذج «مقال جديد». القيمة (value)
+            بالإنجليزية بدون مسافات.
           </p>
           <form
             className={styles.inlineForm}
@@ -734,7 +743,8 @@ export default function DashboardClient() {
         <section className={styles.registrySection}>
           <h2 className={styles.h2}>أندية إضافية</h2>
           <p className={styles.registryHint}>
-            تُضاف إلى قائمة الأندية المغربية الافتراضية. استخدم slug فريد (إنجليزي).
+            تُضاف إلى قائمة الأندية المغربية الافتراضية. استخدم slug فريد
+            (إنجليزي).
           </p>
           <form
             className={styles.inlineForm}
@@ -794,8 +804,8 @@ export default function DashboardClient() {
         <section className={styles.registrySection}>
           <h2 className={styles.h2}>دوريات إضافية</h2>
           <p className={styles.registryHint}>
-            قائمة كبيرة مدمجة في النظام (كأس العالم، الدوريات الأوروبية، العربية…). هنا
-            يمكنك إضافة مسابقة مخصصة.
+            قائمة كبيرة مدمجة في النظام (كأس العالم، الدوريات الأوروبية،
+            العربية…). هنا يمكنك إضافة مسابقة مخصصة.
           </p>
           <form
             className={styles.inlineForm}

@@ -1,0 +1,493 @@
+.layout {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+  }
+  
+  .pageHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .h1 {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+    color: #0f172a;
+  }
+  
+  .lead {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #475569;
+    max-width: 42rem;
+    line-height: 1.5;
+  }
+  
+  .code {
+    font-size: 0.8rem;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  
+  .homeLink {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .hint {
+    padding: 24px;
+    text-align: center;
+  }
+  
+  .banner {
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+    margin-bottom: 16px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .fieldset {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 0;
+  }
+  
+  .legend {
+    padding: 0 8px;
+    font-weight: 700;
+    color: #1e293b;
+  }
+  
+  .label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #334155;
+  }
+  
+  .input,
+  .textarea,
+  .select {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+  }
+  
+  .textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .submit {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  
+  .listSection {
+    margin-top: 40px;
+  }
+  
+  .h2 {
+    font-size: 1.15rem;
+    margin: 0 0 12px;
+  }
+  
+  .tableWrap {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    text-align: right;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  
+  .table th {
+    background: #f8fafc;
+    font-weight: 700;
+  }
+  
+  .mono {
+    font-family: ui-monospace, monospace;
+    font-size: 0.8rem;
+  }
+  
+  .rowActions {
+    white-space: nowrap;
+  }
+  
+  .linkBtn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    cursor: pointer;
+    font: inherit;
+    margin-inline-start: 8px;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .danger {
+    background: none;
+    border: none;
+    color: #dc2626;
+    cursor: pointer;
+    font: inherit;
+    margin-inline-start: 8px;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .tab,
+  .tabActive {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    color: #475569;
+  }
+  
+  .tabActive {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #fff;
+  }
+  
+  .dateCell {
+    font-size: 0.8rem;
+    color: #64748b;
+    white-space: nowrap;
+  }
+  
+  .chipsScroll {
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 4px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+  
+  .tagPickRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .tagPickLabel {
+    font-size: 0.82rem;
+    color: #64748b;
+    width: 100%;
+  }
+  
+  .tagPickBtn {
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    border-radius: 999px;
+    border: 1px solid #bfdbfe;
+    background: #eff6ff;
+    color: #1d4ed8;
+    cursor: pointer;
+  
+    &:hover {
+      background: #dbeafe;
+    }
+  }
+  
+  .registrySection {
+    margin-top: 8px;
+  }
+  
+  .registryHint {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0 0 16px;
+  }
+  
+  .inlineForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+  }
+  
+  .submitSmall {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #0f172a;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+  
+    &:hover {
+      background: #334155;
+    }
+  }
+  
+  .registryList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .registryItem {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  .flashPanel {
+    margin-bottom: 28px;
+    padding: 16px 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #f8fafc;
+  }
+
+  .flashH2 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    color: #0f172a;
+  }
+
+  .flashMeta {
+    margin: 0 0 8px;
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .flashOk {
+    margin: 0 0 12px;
+    font-size: 0.78rem;
+    color: #047857;
+    word-break: break-all;
+  }
+
+  .flashErr {
+    margin: 0 0 12px;
+    font-size: 0.85rem;
+    color: #b91c1c;
+  }
+
+  .flashList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  .flashLink {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e2e8f0;
+    text-decoration: none;
+    color: #0f172a;
+    font-size: 0.9rem;
+
+    &:hover {
+      color: #2563eb;
+    }
+  }
+
+  .flashList li:last-child .flashLink {
+    border-bottom: none;
+  }
+
+  .flashTime {
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: #2563eb;
+    font-size: 0.82rem;
+  }
+
+  .flashTitle {
+    flex: 1;
+    min-width: 0;
+    line-height: 1.45;
+  }
+
+  .flashPanelElbotola {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+  }
+
+  .flashKind {
+    flex-shrink: 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #e0e7ff;
+    color: #3730a3;
+  }
+
+  .flashKind[data-kind="video"] {
+    background: #fce7f3;
+    color: #9d174d;
+  }
+
+  .combinedPanel {
+    margin-bottom: 28px;
+    padding: 16px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .combinedH2 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    color: #0f172a;
+  }
+
+  .combinedLead {
+    margin: 0 0 14px;
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .combinedTableWrap {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+  }
+
+  .combinedTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+  }
+
+  .combinedTable th,
+  .combinedTable td {
+    padding: 8px 10px;
+    text-align: right;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+  }
+
+  .combinedTable th {
+    background: #f1f5f9;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .combinedTime {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    color: #2563eb;
+    font-weight: 600;
+  }
+
+  .combinedLink {
+    color: #0f172a;
+    text-decoration: none;
+
+    &:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+  }
