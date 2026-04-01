@@ -491,3 +491,63 @@
       text-decoration: underline;
     }
   }
+
+  .actionsTh {
+    white-space: nowrap;
+    width: 1%;
+  }
+
+  .actionsCell {
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .acceptBtn,
+  .declineBtn {
+    padding: 6px 10px;
+    margin-inline-start: 6px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+  }
+
+  .acceptBtn {
+    border-color: #86efac;
+    background: #ecfdf5;
+    color: #065f46;
+  }
+
+  .acceptBtn:hover:not(:disabled) {
+    background: #d1fae5;
+  }
+
+  .declineBtn {
+    border-color: #fecaca;
+    background: #fef2f2;
+    color: #991b1b;
+  }
+
+  .declineBtn:hover:not(:disabled) {
+    background: #fee2e2;
+  }
+
+  .acceptBtn:disabled,
+  .declineBtn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .noticeBanner {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }

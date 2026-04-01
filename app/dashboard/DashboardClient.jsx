@@ -90,7 +90,7 @@ export default function DashboardClient() {
     try {
       const [m, a] = await Promise.all([
         fetch("/api/cms/meta").then((r) => r.json()),
-        fetch("/api/cms/articles").then((r) => r.json()),
+        fetch("/api/cms/articles?includeDrafts=1").then((r) => r.json()),
       ]);
       setMeta(m);
       setArticles(a.articles ?? []);
@@ -100,6 +100,16 @@ export default function DashboardClient() {
       setLoading(false);
     }
   }, []);
+
+  const logout = useCallback(async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+    } catch {
+      /* ignore */
+    }
+    router.push("/dashboard/login");
+    router.refresh();
+  }, [router]);
 
   useEffect(() => {
     load();
@@ -294,9 +304,18 @@ export default function DashboardClient() {
             السجل: <code className={styles.code}>data/cms-registry.json</code>
           </p>
         </div>
-        <Link href="/" className={styles.homeLink}>
-          ← الموقع
-        </Link>
+        <div className={styles.headerActions}>
+          <Link href="/" className={styles.homeLink}>
+            ← الموقع
+          </Link>
+          <button
+            type="button"
+            className={styles.logoutBtn}
+            onClick={logout}
+          >
+            خروج
+          </button>
+        </div>
       </header>
 
       {message ? <p className={styles.banner}>{message}</p> : null}

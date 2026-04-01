@@ -39,11 +39,19 @@ function writeUserFile(list) {
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const slug = searchParams.get("slug");
+  const includeDrafts = searchParams.get("includeDrafts") === "1";
   let list = getMergedArticlesServer();
 
   if (slug) {
     const article = getArticleBySlugServer(slug);
+    if (article && article.cmsMeta?.status === "draft" && !includeDrafts) {
+      return Response.json({ article: null });
+    }
     return Response.json({ article: article ?? null });
+  }
+
+  if (!includeDrafts) {
+    list = list.filter((a) => a.cmsMeta?.status !== "draft");
   }
 
   const category = searchParams.get("category");
@@ -58,7 +66,10 @@ export async function GET(request) {
 
   if (searchParams.get("trending") === "1") {
     const map = Object.fromEntries(list.map((a) => [a.slug, a]));
-    list = TRENDING_ORDER.map((s) => map[s]).filter(Boolean);
+    list =
+      TRENDING_ORDER.length > 0
+        ? TRENDING_ORDER.map((s) => map[s]).filter(Boolean)
+        : sortArticlesByDateDesc(list).slice(0, 6);
   }
 
   if (searchParams.get("variety") === "1") {

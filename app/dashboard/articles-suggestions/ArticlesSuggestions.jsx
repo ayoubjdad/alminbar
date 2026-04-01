@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "./ArticlesSuggestions.module.scss";
 import {
   parseHesportFlashArticles,
@@ -8,19 +8,22 @@ import {
   mergeSuggestionSources,
   sortSuggestionsByDateDesc,
 } from "../../../lib/suggestions/elbotolaChrono";
+import { makeSuggestionKey } from "../../../lib/suggestions/suggestionKey";
 
 const HESPORT_HOME = "https://www.hesport.com/";
 
 export default function ArticlesSuggestions() {
   const [hesportHtml, setHesportHtml] = useState("");
-  /** Loaded via same-origin API (server fetches elbotola.com — avoids browser CORS). */
   const [elbotolaChrono, setElbotolaChrono] = useState([]);
   const [errHesport, setErrHesport] = useState(null);
   const [errElbotola, setErrElbotola] = useState(null);
+  const [dismissed, setDismissed] = useState(new Set());
+  const [pendingKey, setPendingKey] = useState(null);
+  const [notice, setNotice] = useState(null);
 
   const hesportSuggestions = useMemo(
     () => (hesportHtml ? parseHesportFlashArticles(hesportHtml) : []),
-    [hesportHtml]
+    [hesportHtml],
   );
 
   const combinedSuggestions = useMemo(() => {
@@ -28,7 +31,7 @@ export default function ArticlesSuggestions() {
       ? new Date(
           buildHesportFlashSnapshot(hesportSuggestions, {
             sourceUrl: HESPORT_HOME,
-          }).fetchedAt
+          }).fetchedAt,
         )
       : new Date();
     const merged = mergeSuggestionSources(hesportSuggestions, elbotolaChrono, {
@@ -37,11 +40,30 @@ export default function ArticlesSuggestions() {
     return sortSuggestionsByDateDesc(merged);
   }, [hesportHtml, hesportSuggestions, elbotolaChrono]);
 
-  function timestampToDate(ts) {
-    return new Date(ts);
-  }
+  const visibleRows = useMemo(() => {
+    return combinedSuggestions.filter((row) => {
+      const k = makeSuggestionKey(row);
+      return !dismissed.has(k);
+    });
+  }, [combinedSuggestions, dismissed]);
 
-  /** Fetches are independent: if Elbotola fails (CORS/network), Hesport still loads. */
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/suggestions/state", { cache: "no-store" })
+      .then(async (r) => {
+        const data = await r.json().catch(() => ({}));
+        if (cancelled) return;
+        const arr = Array.isArray(data.dismissed) ? data.dismissed : [];
+        setDismissed(new Set(arr));
+      })
+      .catch(() => {
+        if (!cancelled) setDismissed(new Set());
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     fetch(HESPORT_HOME)
@@ -55,7 +77,6 @@ export default function ArticlesSuggestions() {
     };
   }, []);
 
-  /** Server-side fetch in Route Handler — no CORS in the browser. */
   useEffect(() => {
     let cancelled = false;
     fetch("/api/suggestions/elbotola-chrono", { cache: "no-store" })
@@ -101,15 +122,86 @@ export default function ArticlesSuggestions() {
     };
   }, [hesportHtml]);
 
+  const onDismiss = useCallback(async (row) => {
+    const key = makeSuggestionKey(row);
+    setPendingKey(key);
+    setNotice(null);
+    try {
+      const res = await fetch("/api/suggestions/dismiss", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "فشل الرفض");
+      setDismissed((prev) => new Set([...prev, key]));
+    } catch (e) {
+      setNotice(e instanceof Error ? e.message : String(e));
+    } finally {
+      setPendingKey(null);
+    }
+  }, []);
+
+  const onAccept = useCallback(async (row) => {
+    const key = makeSuggestionKey(row);
+    setPendingKey(key);
+    setNotice(null);
+    try {
+      const res = await fetch("/api/suggestions/accept", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          key,
+          source: row.source,
+          url: row.url,
+          headline: row.headline || row.title,
+          sourceLabel: row.sourceLabel,
+          timeLabel: row.timeLabel,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "فشل الإضافة");
+      setDismissed((prev) => new Set([...prev, key]));
+      setNotice(
+        `تمت إضافة مسودة «${data.slug || ""}» — يمكنك تعديلها من تبويب المقالات.`,
+      );
+    } catch (e) {
+      setNotice(e instanceof Error ? e.message : String(e));
+    } finally {
+      setPendingKey(null);
+    }
+  }, []);
+
+  function formatTime(row) {
+    if (row.timeLabel) return row.timeLabel;
+    if (row.sortAt != null) {
+      try {
+        return new Date(row.sortAt).toLocaleString("ar-MA", {
+          dateStyle: "short",
+          timeStyle: "short",
+        });
+      } catch {
+        return "—";
+      }
+    }
+    return "—";
+  }
+
   return (
     <section className={styles.listSection}>
       <div className={styles.combinedPanel}>
         <h2 className={styles.combinedH2}>
-          قائمة الاقتراحات الموحّدة ({combinedSuggestions.length})
+          قائمة الاقتراحات الموحّدة ({visibleRows.length})
         </h2>
         <p className={styles.combinedLead}>
-          دمج فلاش هسبورت + كرونو البطولة — مرتبة حسب التاريخ (الأحدث أولاً).
+          دمج فلاش هسبورت + كرونو البطولة — قبول يُنشئ مسودة في المقالات؛ رفض يُخفيه
+          من القائمة.
         </p>
+        {notice ? (
+          <p className={styles.noticeBanner} role="status">
+            {notice}
+          </p>
+        ) : null}
         {errHesport || errElbotola ? (
           <p className={styles.flashErr} role="alert">
             {errHesport ? `هسبورت: ${errHesport}` : ""}
@@ -124,27 +216,48 @@ export default function ArticlesSuggestions() {
                 <th>الوقت</th>
                 <th>المصدر</th>
                 <th>العنوان</th>
+                <th className={styles.actionsTh}>إجراءات</th>
               </tr>
             </thead>
             <tbody>
-              {combinedSuggestions.map((row) => (
-                <tr key={`${row.source}-${row.url}`}>
-                  <td className={styles.combinedTime}>
-                    {timestampToDate(row.sortAt).toLocaleString()}
-                  </td>
-                  <td>{row.sourceLabel}</td>
-                  <td>
-                    <a
-                      href={row.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.combinedLink}
-                    >
-                      {row.headline}
-                    </a>
-                  </td>
-                </tr>
-              ))}
+              {visibleRows.map((row) => {
+                const key = makeSuggestionKey(row);
+                const busy = pendingKey === key;
+                return (
+                  <tr key={key}>
+                    <td className={styles.combinedTime}>{formatTime(row)}</td>
+                    <td>{row.sourceLabel}</td>
+                    <td>
+                      <a
+                        href={row.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.combinedLink}
+                      >
+                        {row.headline}
+                      </a>
+                    </td>
+                    <td className={styles.actionsCell}>
+                      <button
+                        type="button"
+                        className={styles.acceptBtn}
+                        disabled={busy}
+                        onClick={() => onAccept(row)}
+                      >
+                        {busy ? "…" : "قبول (مسودة)"}
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.declineBtn}
+                        disabled={busy}
+                        onClick={() => onDismiss(row)}
+                      >
+                        رفض
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

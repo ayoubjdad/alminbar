@@ -1,7 +1,8 @@
 import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import {
   getMergedArticlesServer,
-  getArticleBySlugServer,
+  getArticleBySlugPublic,
+  isDraftArticle,
 } from "../../../lib/cms/getMergedArticlesServer";
 import { SITE } from "../../../lib/staticData/site";
 import ArticleContent from "./ArticleContent";
@@ -14,7 +15,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const article = getArticleBySlugServer(slug);
+  const article = getArticleBySlugPublic(slug);
   if (!article) {
     return { title: "المقال غير موجود" };
   }

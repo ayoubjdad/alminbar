@@ -193,6 +193,16 @@
   font-weight: 600;
 }
 
+.empty {
+  margin: 0;
+  padding: 20px 12px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #616161);
+  text-align: center;
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
 @media (max-width: 520px) {
   .carouselBtnPrev,
   .carouselBtnNext {
