@@ -1,6 +1,347 @@
 {
-  "categories": [],
+  "categories": [
+    {
+      "value": "moroccan-league",
+      "label": "الدوري المغربي",
+      "description": "البطولة الاحترافية، الأندية الوطنية، النتائج والترتيب.",
+      "sectionKey": "moroccan-league",
+      "homeTitle": "الدوري والأندية المغربية",
+      "order": 10,
+      "showOnHome": true,
+      "siteSectionSlug": "botola",
+      "iconHint": "fi fi-rr-trophy"
+    },
+    {
+      "value": "national-team",
+      "label": "منتخب",
+      "description": "المنتخب المغربي، المباريات الرسمية، التشكيلات والمعسكرات.",
+      "sectionKey": "national-team",
+      "homeTitle": "المنتخب الوطني",
+      "order": 20,
+      "showOnHome": true,
+      "siteSectionSlug": "morocco",
+      "iconHint": "fi fi-rr-flag"
+    },
+    {
+      "value": "professionals",
+      "label": "محترفون",
+      "description": "لاعبون مغاربة في الخارج، انتقالات ومسارات المحترفين.",
+      "sectionKey": "professionals",
+      "homeTitle": "محترفون في الخارج",
+      "order": 30,
+      "showOnHome": true,
+      "siteSectionSlug": "international",
+      "iconHint": "fi fi-rr-plane"
+    },
+    {
+      "value": "international-news",
+      "label": "أخبار دولية",
+      "description": "الدوريات الأوروبية الكبرى، الأبطال، السوق العالمي.",
+      "sectionKey": "arab-world",
+      "homeTitle": "عالم كرة القدم",
+      "order": 40,
+      "showOnHome": true,
+      "siteSectionSlug": "international",
+      "iconHint": "fi fi-rr-globe"
+    },
+    {
+      "value": "arab-news",
+      "label": "أخبار عربية",
+      "description": "دوريات الخليج والمشرق، المنتخبات العربية، أخبار المنطقة.",
+      "sectionKey": "arab-news",
+      "homeTitle": "الكرة العربية",
+      "order": 50,
+      "showOnHome": true,
+      "siteSectionSlug": "morocco",
+      "iconHint": "fi fi-rr-users"
+    },
+    {
+      "value": "morocco-sports",
+      "label": "رياضة مغربية عامة",
+      "description": "أخبار رياضية وطنية خارج إطار البطولة أو المنتخب.",
+      "sectionKey": "morocco-sports",
+      "homeTitle": "رياضة مغربية",
+      "order": 60,
+      "showOnHome": true,
+      "siteSectionSlug": "morocco",
+      "iconHint": "fi fi-rr-running"
+    },
+    {
+      "value": "variety",
+      "label": "منوعات",
+      "description": "مواضيع خفيفة، ترفيه رياضي، وترندات.",
+      "sectionKey": "variety",
+      "homeTitle": "منوعات رياضية",
+      "order": 70,
+      "showOnHome": true,
+      "siteSectionSlug": "matches",
+      "iconHint": "fi fi-rr-smile"
+    }
+  ],
   "tags": [],
-  "clubs": [],
-  "leagues": []
+  "clubs": [
+    {
+      "slug": "raja-club-athletic",
+      "nameAr": "الرجاء الرياضي",
+      "id": 41757
+    },
+    {
+      "slug": "wydad-casablanca",
+      "nameAr": "الوداد الرياضي",
+      "id": 36268
+    },
+    {
+      "slug": "maghreb-fes",
+      "nameAr": "المغرب الفاسي",
+      "id": 55035
+    },
+    {
+      "slug": "as-far-rabat",
+      "nameAr": "الجيش الملكي",
+      "id": 24394
+    },
+    {
+      "slug": "cod-meknes",
+      "nameAr": "النادي المكناسي",
+      "id": 55025
+    },
+    {
+      "slug": "rs-berkane",
+      "nameAr": "نهضة بركان",
+      "id": 80395
+    },
+    {
+      "slug": "dhj-el-jadida",
+      "nameAr": "الدفاع الحسني الجديدي",
+      "id": 55043
+    },
+    {
+      "slug": "olympique-dcheira",
+      "nameAr": "أولمبيك الدشيرة",
+      "id": 204299
+    },
+    {
+      "slug": "kawkab-marrakech",
+      "nameAr": "الكوكب الرياضي المراكشي",
+      "id": 47696
+    },
+    {
+      "slug": "fus-rabat",
+      "nameAr": "الفتح الرياضي",
+      "id": 55027
+    },
+    {
+      "slug": "hassania-agadir",
+      "nameAr": "حسنية أغادير",
+      "id": 55039
+    },
+    {
+      "slug": "ittihad-tanger",
+      "nameAr": "إتحاد طنجة",
+      "id": 87180
+    },
+    {
+      "slug": "nahda-zemamra",
+      "nameAr": "نهضة الزمامرة",
+      "id": 263373
+    },
+    {
+      "slug": "union-touarga",
+      "nameAr": "إتحاد تواركة",
+      "id": 118834
+    },
+    {
+      "slug": "union-yaacoub-el-mansour",
+      "nameAr": "إتحاد يعقوب المنصور",
+      "id": 479104
+    },
+    {
+      "slug": "olympic-safi",
+      "nameAr": "أولمبيك آسفي",
+      "id": 55037
+    },
+    {
+      "slug": "real-madrid",
+      "nameAr": "ريال مدريد"
+    },
+    {
+      "slug": "fc-barcelona",
+      "nameAr": "برشلونة"
+    },
+    {
+      "slug": "atletico-madrid",
+      "nameAr": "أتلتيكو مدريد"
+    },
+    {
+      "slug": "sevilla",
+      "nameAr": "إشبيلية"
+    },
+    {
+      "slug": "manchester-city",
+      "nameAr": "مانشستر سيتي"
+    },
+    {
+      "slug": "liverpool",
+      "nameAr": "ليفربول"
+    },
+    {
+      "slug": "arsenal",
+      "nameAr": "أرسنال"
+    },
+    {
+      "slug": "chelsea",
+      "nameAr": "تشيلسي"
+    },
+    {
+      "slug": "manchester-united",
+      "nameAr": "مانشستر يونايتد"
+    },
+    {
+      "slug": "tottenham-hotspur",
+      "nameAr": "توتنهام هوتسبير"
+    },
+    {
+      "slug": "bayern-munich",
+      "nameAr": "بايرن ميونخ"
+    },
+    {
+      "slug": "borussia-dortmund",
+      "nameAr": "بوروسيا دورتموند"
+    },
+    {
+      "slug": "rb-leipzig",
+      "nameAr": "لايبزيغ"
+    },
+    {
+      "slug": "inter-milan",
+      "nameAr": "إنتر ميلان"
+    },
+    {
+      "slug": "ac-milan",
+      "nameAr": "ميلان"
+    },
+    {
+      "slug": "juventus",
+      "nameAr": "يوفنتوس"
+    },
+    {
+      "slug": "napoli",
+      "nameAr": "نابولي"
+    },
+    {
+      "slug": "paris-saint-germain",
+      "nameAr": "باريس سان جيرمان"
+    },
+    {
+      "slug": "olympique-marseille",
+      "nameAr": "أولمبيك مارسيليا"
+    },
+    {
+      "slug": "monaco",
+      "nameAr": "موناكو"
+    },
+    {
+      "slug": "ajax",
+      "nameAr": "أياكس أمستردام"
+    },
+    {
+      "slug": "psv-eindhoven",
+      "nameAr": "آيندهوفن"
+    },
+    {
+      "slug": "benfica",
+      "nameAr": "بنفيكا"
+    },
+    {
+      "slug": "fc-porto",
+      "nameAr": "بورتو"
+    }
+  ],
+  "leagues": [
+    {
+      "slug": "africa-cup-of-nations",
+      "labelAr": "كأس أمم أفريقيا",
+      "group": "featured"
+    },
+    {
+      "slug": "botola-pro",
+      "labelAr": "الدوري المغربي الممتاز",
+      "group": "featured"
+    },
+    {
+      "slug": "la-liga",
+      "labelAr": "الدوري الاسباني",
+      "group": "featured"
+    },
+    {
+      "slug": "premier-league",
+      "labelAr": "الدوري الإنجليزي الممتاز",
+      "group": "featured"
+    },
+    {
+      "slug": "serie-a",
+      "labelAr": "الدوري الإيطالي",
+      "group": "featured"
+    },
+    {
+      "slug": "ligue-1",
+      "labelAr": "الدوري الفرنسي",
+      "group": "featured"
+    },
+    {
+      "slug": "bundesliga",
+      "labelAr": "الدوري الألماني",
+      "group": "featured"
+    },
+    {
+      "slug": "uefa-champions-league",
+      "labelAr": "دوري أبطال أوروبا",
+      "group": "featured"
+    },
+    {
+      "slug": "uefa-europa-league",
+      "labelAr": "الدوري الأوروبي",
+      "group": "featured"
+    },
+    {
+      "slug": "jupiler-pro-league",
+      "labelAr": "الدوري البلجيكي",
+      "group": "featured"
+    },
+    {
+      "slug": "eredivisie",
+      "labelAr": "الدوري الهولندي الممتاز",
+      "group": "featured"
+    },
+    {
+      "slug": "brazilian-serie-a",
+      "labelAr": "الدوري البرازيلي",
+      "group": "featured"
+    },
+    {
+      "slug": "qatar-stars-league",
+      "labelAr": "دوري النجوم القطري",
+      "group": "featured"
+    },
+    {
+      "slug": "algerian-ligue-1",
+      "labelAr": "الدوري الجزائري",
+      "group": "featured"
+    },
+    {
+      "slug": "tunisian-ligue-1",
+      "labelAr": "الدوري التونسي",
+      "group": "featured"
+    },
+    {
+      "slug": "jordan-pro-league",
+      "labelAr": "الدوري الأردني للمحترفين",
+      "group": "featured"
+    },
+    {
+      "slug": "saudi-pro-league",
+      "labelAr": "دوري المحترفين السعودي",
+      "group": "featured"
+    }
+  ]
 }

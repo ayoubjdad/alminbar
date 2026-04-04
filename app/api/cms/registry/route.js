@@ -37,7 +37,31 @@ export async function POST(request) {
       );
     }
     reg.categories = reg.categories.filter((c) => c.value !== item.value);
-    reg.categories.push({ value: String(item.value).trim(), label: String(item.label).trim() });
+    const value = String(item.value).trim();
+    const row = {
+      value,
+      label: String(item.label).trim(),
+    };
+    if (item.description != null && item.description !== "") {
+      row.description = String(item.description).trim();
+    }
+    if (item.sectionKey != null && item.sectionKey !== "") {
+      row.sectionKey = String(item.sectionKey).trim();
+    }
+    if (item.homeTitle != null && item.homeTitle !== "") {
+      row.homeTitle = String(item.homeTitle).trim();
+    }
+    if (item.siteSectionSlug != null && item.siteSectionSlug !== "") {
+      row.siteSectionSlug = String(item.siteSectionSlug).trim();
+    }
+    if (item.iconHint != null && item.iconHint !== "") {
+      row.iconHint = String(item.iconHint).trim();
+    }
+    if (typeof item.order === "number" && !Number.isNaN(item.order)) {
+      row.order = item.order;
+    }
+    if (item.showOnHome === false) row.showOnHome = false;
+    reg.categories.push(row);
   } else if (type === "tags") {
     if (!item.slug || !item.nameAr) {
       return Response.json(
@@ -82,6 +106,7 @@ export async function POST(request) {
 
   writeRegistryFile(reg);
   revalidatePath("/dashboard");
+  revalidatePath("/");
 
   return Response.json({ ok: true });
 }
@@ -112,6 +137,7 @@ export async function DELETE(request) {
 
   writeRegistryFile(reg);
   revalidatePath("/dashboard");
+  revalidatePath("/");
 
   return Response.json({ ok: true });
 }

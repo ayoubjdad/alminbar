@@ -12,7 +12,7 @@ import styles from "./NewsSection.module.scss";
 
 export default function NewsSection({
   title = "أخبار رياضية",
-  sectionKey = "morocco-sports",
+  sectionKey = "moroccan-league",
   showCarouselNav = true,
 }) {
   const scrollRef = useRef(null);

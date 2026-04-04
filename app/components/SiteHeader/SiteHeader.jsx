@@ -8,7 +8,7 @@ import styles from "./SiteHeader.module.scss";
 import logo from "../../assets/logos/logo.png";
 
 export default function SiteHeader() {
-  const { siteNav, site } = useStaticData();
+  const { categories, site } = useStaticData();
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -85,13 +85,13 @@ export default function SiteHeader() {
       </div>
 
       <nav className={styles.nav} aria-label="التصنيفات">
-        {siteNav.map((item) => (
+        {categories.map((c) => (
           <Link
-            key={item.href + item.label}
-            href={item.href}
+            key={c.slug}
+            href={`/category/${c.slug}`}
             className={styles.navItem}
           >
-            <span className={styles.navLabel}>{item.label}</span>
+            <span className={styles.navLabel}>{c.label}</span>
           </Link>
         ))}
       </nav>
@@ -126,14 +126,14 @@ export default function SiteHeader() {
           </button>
         </div>
         <nav className={styles.drawerNav} aria-label="التصنيفات">
-          {siteNav.map((item) => (
+          {categories.map((c) => (
             <Link
-              key={item.href + item.label}
-              href={item.href}
+              key={c.slug}
+              href={`/category/${c.slug}`}
               className={styles.drawerLink}
               onClick={close}
             >
-              {item.label}
+              {c.label}
             </Link>
           ))}
         </nav>

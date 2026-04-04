@@ -308,17 +308,11 @@ export default function DashboardClient() {
           <Link href="/" className={styles.homeLink}>
             ← الموقع
           </Link>
-          <button
-            type="button"
-            className={styles.logoutBtn}
-            onClick={logout}
-          >
+          <button type="button" className={styles.logoutBtn} onClick={logout}>
             خروج
           </button>
         </div>
       </header>
-
-      {message ? <p className={styles.banner}>{message}</p> : null}
 
       <div className={styles.tabs} role="tablist" aria-label="أقسام اللوحة">
         {TABS.map((t) => (
@@ -629,6 +623,8 @@ export default function DashboardClient() {
               </select>
             </label>
           </fieldset>
+
+          {message ? <p className={styles.banner}>{message}</p> : null}
 
           <div className={styles.actions}>
             <button type="submit" className={styles.submit} disabled={saving}>

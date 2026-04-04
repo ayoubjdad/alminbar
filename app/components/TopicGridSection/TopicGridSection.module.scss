@@ -51,6 +51,16 @@
   letter-spacing: -0.02em;
 }
 
+.badgeTitleLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  &:hover .badgeTitle {
+    opacity: 0.92;
+  }
+}
+
 .featuredImg {
   position: relative;
   z-index: 2;

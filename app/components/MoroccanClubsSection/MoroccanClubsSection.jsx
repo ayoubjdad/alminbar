@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import { MOROCCAN_BOTOLA_SLUGS } from "../../../lib/moroccanBotolaSlugs";
 import styles from "./MoroccanClubsSection.module.scss";
+import { useMemo } from "react";
 
 async function fetchMeta() {
   const res = await fetch("/api/cms/meta", { cache: "no-store" });
@@ -17,7 +19,13 @@ export default function MoroccanClubsSection() {
     queryFn: fetchMeta,
   });
 
-  const clubs = data?.clubs ?? [];
+  const clubs = useMemo(() => {
+    const filtered = (data?.clubs ?? []).filter((c) =>
+      MOROCCAN_BOTOLA_SLUGS.has(c.slug)
+    );
+
+    return filtered.sort((a, b) => a.slug.localeCompare(b.slug, "ar"));
+  }, [data?.clubs]);
 
   if (isPending) {
     return (
@@ -53,17 +61,12 @@ export default function MoroccanClubsSection() {
           >
             <span className={styles.logoWrap}>
               <Image
-                src={
-                  c.logo ||
-                  (c.id != null
-                    ? `https://img.sofascore.com/api/v1/team/${c.id}/image`
-                    : `https://ui-avatars.com/api/?background=0f172a&color=fff&size=96&name=${encodeURIComponent(c.nameAr ?? c.name ?? c.slug)}`)
-                }
+                src={`https://img.sofascore.com/api/v1/team/${c.id}/image`}
                 alt=""
                 width={48}
                 height={48}
                 className={styles.logo}
-                unoptimized={!c.logo && c.id == null}
+                unoptimized
               />
             </span>
           </Link>

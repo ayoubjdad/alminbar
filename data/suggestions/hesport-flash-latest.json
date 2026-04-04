@@ -5,11 +5,19 @@
   "widgetTitle": "فلاش رياضي",
   "widgetCategoryUrl": "https://www.hesport.com/akhbar",
   "sourceUrl": "https://www.hesport.com/",
-  "fetchedAt": "2026-04-01T14:37:45.299Z",
+  "fetchedAt": "2026-04-01T15:56:14.157Z",
   "fetchedDate": "2026-04-01",
-  "fetchedAtLocaleAr": "الأربعاء، 1 أبريل 2026 في 15:37",
+  "fetchedAtLocaleAr": "الأربعاء، 1 أبريل 2026 في 16:56",
   "count": 16,
   "articles": [
+    {
+      "url": "https://www.hesport.com/%d8%b5%d9%8a%d8%a8%d8%a7%d8%b1%d9%8a-%d9%8a%d8%ae%d8%b1%d8%ac-%d8%b9%d9%86-%d8%b5%d9%85%d8%aa%d9%87-%d9%88%d9%8a%d8%b1%d8%af-%d8%b9%d9%84%d9%89-%d8%a7%d9%84%d8%ac%d8%af%d9%84-433237.html",
+      "title": "صيباري يخرج عن صمته ويرد على الجدل",
+      "timeLabel": "16:23",
+      "headline": "صيباري يخرج عن صمته ويرد على الجدل",
+      "slug": "صيباري-يخرج-عن-صمته-ويرد-على-الجدل-433237",
+      "articleId": "433237"
+    },
     {
       "url": "https://www.hesport.com/%d8%b5%d8%a7%d9%81%d8%b1%d8%a9-%d9%85%d8%b5%d8%b1%d9%8a%d8%a9-%d9%84%d9%85%d8%a8%d8%a7%d8%b1%d8%a7%d8%a9-%d8%a2%d8%b3%d9%81%d9%8a-%d9%88%d8%a7%d8%aa%d8%ad%d8%a7%d8%af-%d8%a7%d9%84%d8%b9%d8%a7%d8%b5-433226.html",
       "title": "صافرة مصرية لمباراة آسفي واتحاد العاصمة",
@@ -129,14 +137,6 @@
       "headline": "المغربي بنواحي مدربا جديدا لغالانتس",
       "slug": "المغربي-بنواحي-مدربا-جديدا-لغالانتس-433106",
       "articleId": "433106"
-    },
-    {
-      "url": "https://www.hesport.com/%d8%aa%d8%ad%d8%af%d9%8a%d8%af-%d8%aa%d9%88%d9%82%d9%8a%d8%aa-%d9%85%d8%a8%d8%a7%d8%b1%d8%a7%d8%aa%d9%8a-%d8%a2%d8%b3%d9%81%d9%8a-%d9%88%d8%a7%d9%84%d8%b9%d8%a7%d8%b5%d9%85%d8%a9-433091.html",
-      "title": "تحديد توقيت مباراتي آسفي والعاصمة",
-      "timeLabel": "15:05",
-      "headline": "تحديد توقيت مباراتي آسفي والعاصمة",
-      "slug": "تحديد-توقيت-مباراتي-آسفي-والعاصمة-433091",
-      "articleId": "433091"
     }
   ]
 }
