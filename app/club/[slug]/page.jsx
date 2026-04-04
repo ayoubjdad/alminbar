@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
 import NewsCard from "../../components/NewsSection/NewsCard";
+import { findStandingRowForClub } from "../../../lib/data/botolaStandingsMatch";
+import { DEFAULT_BOTOLA_STANDINGS } from "../../../lib/data/footballRankings";
 import { getAllClubSlugs, getClubBySlug } from "../../../lib/moroccanClubs";
 import { getArticlesByClubServer } from "../../../lib/cms/articleQueries.server";
 import { SITE } from "../../../lib/staticData/site";
@@ -24,13 +26,19 @@ export async function generateMetadata({ params }) {
   };
 }
 
+function formatGd(gd) {
+  if (gd == null || Number.isNaN(gd)) return "—";
+  return gd > 0 ? `+${gd}` : String(gd);
+}
+
 export default async function ClubPage({ params }) {
   const { slug } = await params;
   const club = getClubBySlug(slug);
   if (!club) notFound();
 
   const articles = getArticlesByClubServer(slug);
-  const r = club.ranking;
+  const standings = DEFAULT_BOTOLA_STANDINGS;
+  const row = findStandingRowForClub(standings.rows, club);
 
   return (
     <HomePageLayout>
@@ -59,46 +67,52 @@ export default async function ClubPage({ params }) {
           </div>
           <div className={styles.heroText}>
             <h1 className={styles.title}>{club.name}</h1>
-            <p className={styles.city}>{club.city}</p>
+            {/* <p className={styles.city}>{club.city}</p> */}
           </div>
         </header>
 
-        <section className={styles.rankSection} aria-labelledby="club-rank-heading">
-          <h2 id="club-rank-heading" className={styles.sectionTitle}>
-            الترتيب في الدوري (تجريبي)
+        <section
+          className={styles.rankSection}
+          aria-labelledby="club-stats-heading"
+        >
+          <h2 id="club-stats-heading" className={styles.sectionTitle}>
+            إحصائيات النادي في الدوري
           </h2>
-          <div className={styles.rankCard}>
-            <div className={styles.rankHighlight}>
-              <span className={styles.rankLabel}>المركز</span>
-              <span className={styles.rankValue}>#{r.leagueRank}</span>
-              <span className={styles.rankPts}>{r.points} نقطة</span>
+          {row ? (
+            <div className={styles.rankCard}>
+              <div className={styles.rankHighlight}>
+                <span className={styles.rankLabel}>المركز</span>
+                <span className={styles.rankValue}>#{row.rank}</span>
+                <span className={styles.rankPts}>{row.pts} نقطة</span>
+              </div>
+              <table className={styles.statsTable}>
+                <tbody>
+                  <tr>
+                    <th scope="row">لعب</th>
+                    <td>{row.mp ?? "—"}</td>
+                    <th scope="row">له</th>
+                    <td>{row.goalsFor ?? "—"}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">عليه</th>
+                    <td>{row.goalsAgainst ?? "—"}</td>
+                    <th scope="row">الفارق</th>
+                    <td className={styles.gdCell}>{formatGd(row.gd)}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <table className={styles.table}>
-              <tbody>
-                <tr>
-                  <th scope="row">لعب</th>
-                  <td>{r.played}</td>
-                  <th scope="row">فوز</th>
-                  <td>{r.won}</td>
-                </tr>
-                <tr>
-                  <th scope="row">تعادل</th>
-                  <td>{r.draw}</td>
-                  <th scope="row">خسارة</th>
-                  <td>{r.lost}</td>
-                </tr>
-                <tr>
-                  <th scope="row">له</th>
-                  <td>{r.goalsFor}</td>
-                  <th scope="row">عليه</th>
-                  <td>{r.goalsAgainst}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          ) : (
+            <p className={styles.statsMissing}>
+              لا يوجد صف مطابق لهذا النادي في جدول الترتيب الحالي.
+            </p>
+          )}
         </section>
 
-        <section className={styles.articles} aria-labelledby="club-articles-heading">
+        <section
+          className={styles.articles}
+          aria-labelledby="club-articles-heading"
+        >
           <h2 id="club-articles-heading" className={styles.sectionTitle}>
             أخبار النادي
           </h2>

@@ -6,7 +6,7 @@ import MoroccanClubsSection from "./components/MoroccanClubsSection/MoroccanClub
 import { AD_SLOTS } from "../lib/adSlots";
 import { getHomePageNewsSections } from "../lib/cms/buildCmsMeta";
 import NewsSection from "./components/NewsSection/NewsSection";
-import OpinionSection from "./components/OpinionSection/OpinionSection";
+// import OpinionSection from "./components/OpinionSection/OpinionSection";
 import PollSection from "./components/PollSection/PollSection";
 import ReadingLatestVideo from "./components/ReadingLatestVideo/ReadingLatestVideo";
 import TodaysGamesSection from "./components/TodaysGamesSection/TodaysGamesSection";
@@ -32,9 +32,9 @@ export default async function Home() {
       {newsAfterAd.map(({ title, sectionKey, value }) => (
         <NewsSection key={value} title={title} sectionKey={sectionKey} />
       ))}
-      <PollSection />
-      <OpinionSection />
       <TopicGridSection columns={topicGridColumns} />
+      <PollSection />
+      {/* <OpinionSection /> */}
       <TrendingNowSection />
       <GalleriesFeature />
     </HomePageLayout>

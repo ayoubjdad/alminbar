@@ -66,9 +66,9 @@ export default function SiteHeader() {
           </Link>
         </div>
         <div className={styles.actions}>
-          <button type="button" className={styles.liveBtn}>
+          {/* <button type="button" className={styles.liveBtn}>
             بث مباشر
-          </button>
+          </button> */}
           <div className={styles.searchWrap}>
             <input
               type="search"
@@ -80,7 +80,7 @@ export default function SiteHeader() {
               ابحث
             </button>
           </div>
-          <i className={`fi fi-rr-bell ${styles.bell}`} aria-hidden />
+          {/* <i className={`fi fi-rr-bell ${styles.bell}`} aria-hidden /> */}
         </div>
       </div>
 

@@ -122,8 +122,6 @@ export default function TodaysGamesSection() {
                   </div>
                   <div className={styles.meta}>
                     <time className={styles.time}>{m.time}</time>
-                    <span className={styles.dot} aria-hidden />
-                    <span className={styles.venue}>{m.venue}</span>
                   </div>
                 </article>
               </div>

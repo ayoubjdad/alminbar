@@ -8,14 +8,10 @@ import {
   fetchTrendingNews,
   queryKeys,
 } from "../../../lib/queries/newsQueries";
-import { useStaticData } from "../../../lib/staticData";
 import LeagueRankingsPanel from "../LeagueRankingsPanel/LeagueRankingsPanel";
 import styles from "./ReadingLatestVideo.module.scss";
 
-export default function ReadingLatestVideo({ leagueTabs: leagueTabsProp }) {
-  const { leagueTabs: leagueTabsFromContext } = useStaticData();
-  const leagueTabs = leagueTabsProp ?? leagueTabsFromContext;
-
+export default function ReadingLatestVideo() {
   const { data: mostRead = [] } = useQuery({
     queryKey: queryKeys.trending(),
     queryFn: fetchTrendingNews,
@@ -44,8 +40,8 @@ export default function ReadingLatestVideo({ leagueTabs: leagueTabsProp }) {
   return (
     <section className={styles.root} id="league-rankings">
       <div className={styles.rankingsCol}>
-        <h2 className={styles.colTitle}>ترتيب الدوريات</h2>
-        <LeagueRankingsPanel tabs={leagueTabs} />
+        <h2 className={styles.colTitle}>ترتيب الدوري المغربي</h2>
+        <LeagueRankingsPanel />
       </div>
 
       <div className={styles.col}>

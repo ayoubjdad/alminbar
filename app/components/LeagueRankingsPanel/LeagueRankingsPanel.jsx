@@ -1,158 +1,121 @@
 "use client";
 
 import Image from "next/image";
-import { useId, useMemo, useState } from "react";
-import { useStaticData } from "../../../lib/staticData";
+import { rowMatchesNames } from "../../../lib/data/botolaStandingsMatch";
+import { DEFAULT_BOTOLA_STANDINGS } from "../../../lib/data/footballRankings";
 import styles from "./LeagueRankingsPanel.module.scss";
 
 /**
- * تبويبات بشعارات الدوريات (صف أفقي) + لوحة ترتيب واحدة.
- * `tabs`: اختياري — الافتراضي من `StaticDataProvider`.
+ * جدول ترتيب البطولة الاحترافية (البوتولا) فقط.
+ * `standings`: اختياري — الافتراضي `DEFAULT_BOTOLA_STANDINGS`.
+ * `highlightTeamNames`: أسماء لمطابقة صف الفريق الحالي (مثل صفحة النادي).
  */
-export default function LeagueRankingsPanel({ tabs }) {
-  const { leagueTabs } = useStaticData();
-  const resolvedTabs = tabs ?? leagueTabs;
-  const baseId = useId();
-  const defaultIdx = useMemo(() => {
-    const i = resolvedTabs.findIndex((t) => t.id === "botola");
-    return i >= 0 ? i : 0;
-  }, [resolvedTabs]);
+export default function LeagueRankingsPanel({
+  standings: standingsProp,
+  highlightTeamNames,
+} = {}) {
+  const data = standingsProp ?? DEFAULT_BOTOLA_STANDINGS;
+  const rows = data.rows ?? [];
+  const showGoalCols = rows.some(
+    (r) => r.goalsFor != null && r.goalsAgainst != null
+  );
 
-  const [activeIdx, setActiveIdx] = useState(defaultIdx);
-  const active = resolvedTabs[activeIdx] ?? resolvedTabs[0];
-  const panelId = `${baseId}-panel`;
-
-  if (!active) {
+  if (!rows.length) {
     return null;
   }
 
   return (
     <div className={styles.root}>
-      <div className={styles.tabStrip}>
-        <div
-          className={styles.logoTabRow}
-          dir="ltr"
-          role="tablist"
-          aria-label="اختر الدوري"
-        >
-          {resolvedTabs.map((tab, i) => (
-            <button
-              key={tab.id}
-              type="button"
-              role="tab"
-              id={`${baseId}-tab-${tab.id}`}
-              aria-selected={activeIdx === i}
-              aria-controls={panelId}
-              className={`${styles.logoTab} ${
-                activeIdx === i ? styles.logoTabActive : ""
-              }`}
-              onClick={() => setActiveIdx(i)}
-              title={tab.name}
-              aria-label={tab.name}
-            >
-              <span className={styles.logoFrame}>
-                <Image
-                  src={tab.logo}
-                  alt=""
-                  width={56}
-                  height={56}
-                  className={styles.logoImg}
-                  sizes="56px"
-                />
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div
-        id={panelId}
-        role="tabpanel"
-        aria-labelledby={`${baseId}-tab-${active.id}`}
-        className={styles.panel}
-      >
-        {active.kind === "botola" ? (
-          <section className={styles.block}>
-            <div className={styles.blockHead}>
-              <h3 className={styles.blockTitle}>
-                {active.label ?? active.name}
-              </h3>
-              {active.seasonLabel ? (
-                <span className={styles.season}>{active.seasonLabel}</span>
-              ) : null}
-            </div>
-            <div className={styles.tableScroll}>
-              <table className={styles.table}>
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">الفريق</th>
-                    <th scope="col">لعب</th>
-                    <th scope="col">نقاط</th>
-                    <th scope="col">±</th>
+      <div className={styles.panel}>
+        <section className={styles.block}>
+          <div className={styles.tableScroll}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">الفريق</th>
+                  <th scope="col">لعب</th>
+                  {showGoalCols ? (
+                    <>
+                      <th scope="col">له</th>
+                      <th scope="col">عليه</th>
+                    </>
+                  ) : null}
+                  <th scope="col">نقاط</th>
+                  <th scope="col">±</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr
+                    key={`${row.rank}-${row.team}`}
+                    className={
+                      rowMatchesNames(row.team, highlightTeamNames)
+                        ? styles.rowHighlight
+                        : undefined
+                    }
+                  >
+                    <td className={styles.rank}>{row.rank}</td>
+                    <td className={styles.team}>
+                      {row.logo ? (
+                        row.teamUrl ? (
+                          <a
+                            href={row.teamUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={styles.teamLink}
+                          >
+                            <Image
+                              src={row.logo}
+                              alt=""
+                              width={22}
+                              height={22}
+                              className={styles.teamRowLogo}
+                              sizes="22px"
+                            />
+                            <span className={styles.teamName}>{row.team}</span>
+                          </a>
+                        ) : (
+                          <span className={styles.teamLink}>
+                            <Image
+                              src={row.logo}
+                              alt=""
+                              width={22}
+                              height={22}
+                              className={styles.teamRowLogo}
+                              sizes="22px"
+                            />
+                            <span className={styles.teamName}>{row.team}</span>
+                          </span>
+                        )
+                      ) : (
+                        row.team
+                      )}
+                    </td>
+                    <td className={styles.num}>{row.mp ?? "—"}</td>
+                    {showGoalCols ? (
+                      <>
+                        <td className={styles.num}>{row.goalsFor ?? "—"}</td>
+                        <td className={styles.num}>
+                          {row.goalsAgainst ?? "—"}
+                        </td>
+                      </>
+                    ) : null}
+                    <td className={styles.pts}>{row.pts}</td>
+                    <td className={styles.gd}>
+                      {row.gd != null
+                        ? row.gd > 0
+                          ? `+${row.gd}`
+                          : row.gd
+                        : "—"}
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {active.rows.map((row) => (
-                    <tr key={`${row.rank}-${row.team}`}>
-                      <td className={styles.rank}>{row.rank}</td>
-                      <td className={styles.team}>{row.team}</td>
-                      <td className={styles.num}>{row.mp ?? "—"}</td>
-                      <td className={styles.pts}>{row.pts}</td>
-                      <td className={styles.gd}>
-                        {row.gd != null
-                          ? row.gd > 0
-                            ? `+${row.gd}`
-                            : row.gd
-                          : "—"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        ) : (
-          <section className={styles.worldBlock}>
-            <div className={styles.worldHead}>
-              <h3 className={styles.worldTitle}>{active.name}</h3>
-              {active.country ? (
-                <span className={styles.worldCountry}>{active.country}</span>
-              ) : null}
-            </div>
-            <div className={styles.miniScroll}>
-              <table className={styles.miniTable}>
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">الفريق</th>
-                    <th scope="col">لعب</th>
-                    <th scope="col">نقاط</th>
-                    <th scope="col">±</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {active.rows.map((r) => (
-                    <tr key={`${active.id}-${r.rank}-${r.team}`}>
-                      <td className={styles.miniRank}>{r.rank}</td>
-                      <td className={styles.miniTeam}>{r.team}</td>
-                      <td className={styles.miniNum}>{r.mp ?? "—"}</td>
-                      <td className={styles.miniPts}>{r.pts}</td>
-                      <td className={styles.miniGd}>
-                        {r.gd != null ? (r.gd > 0 ? `+${r.gd}` : r.gd) : "—"}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
-        )}
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
-
-      <p className={styles.note}>
-        ترتيب تجريبي — البطولة الاحترافية والدوريات الأوروبية (جاهز لربط API).
-      </p>
     </div>
   );
 }
