@@ -1,6 +1,58 @@
 @import url("https://cdn-uicons.flaticon.com/4.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css");
 @import "tailwindcss";
 
+/* ألوان ثابتة للعلامة — يُكمّلها الوضع الداكن / الفاتح أدناه */
+:root {
+  --brand-neon: #00fa63;
+  --brand-neon-hover: #00ce53;
+  --color-live: #ff453a;
+  --content-max: 1250px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --transition-fast: 0.15s ease;
+}
+
+/* الوضع الداكن (افتراضي): بدون data-theme أو data-theme="dark" */
+html:not([data-theme="light"]) {
+  color-scheme: dark;
+  --brand-neon-dim: rgba(0, 250, 99, 0.12);
+  --color-bg: #0a0a0a;
+  --color-bg-subtle: #0f0f0f;
+  --color-surface: #141414;
+  --color-surface-elevated: #1a1a1a;
+  --color-border: #2e2e2e;
+  --color-border-strong: #454545;
+  --color-text: #f5f5f5;
+  --color-text-muted: #9a9a9a;
+  --color-primary: var(--brand-neon);
+  --color-primary-dark: var(--brand-neon-hover);
+  --color-primary-contrast: #0a0a0a;
+  --shadow-sm: 0 2px 14px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 32px rgba(0, 0, 0, 0.55);
+  --shadow-glow-primary: 0 4px 22px rgba(0, 250, 99, 0.22);
+  --row-highlight-hover: rgba(0, 250, 99, 0.18);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --brand-neon-dim: rgba(0, 200, 80, 0.12);
+  --color-bg: #f2f2ef;
+  --color-bg-subtle: #e8e8e4;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #fafaf8;
+  --color-border: #d8d8d4;
+  --color-border-strong: #a8a8a0;
+  --color-text: #121211;
+  --color-text-muted: #5a5a54;
+  --color-primary: var(--brand-neon);
+  --color-primary-dark: var(--brand-neon-hover);
+  --color-primary-contrast: #051309;
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.1);
+  --shadow-glow-primary: 0 4px 20px rgba(0, 250, 99, 0.18);
+  --row-highlight-hover: rgba(0, 250, 99, 0.14);
+}
+
 @font-face {
   font-family: "Ailato";
   src: url("/assets/fonts/ailato/Ailato-Thin.ttf") format("truetype");
@@ -60,9 +112,18 @@ body {
   font-weight: 400;
   line-height: 1.43;
   letter-spacing: 0.01071em;
-  background-color: #fafafa;
-  color: rgba(0, 0, 0, 0.87);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: "Ailato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-primary-contrast);
 }
 
 p,

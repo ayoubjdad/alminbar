@@ -39,7 +39,7 @@
   aspect-ratio: 4 / 2.5;
   padding: 10px 16px 12px;
   align-items: flex-start;
-  background: var(--color-primary, #003399);
+  background: var(--color-primary);
 }
 
 .badgeTitle {
@@ -47,7 +47,7 @@
   font-size: clamp(15px, 2.2vw, 17px);
   font-weight: 800;
   line-height: 1.2;
-  color: #fff;
+  color: var(--color-primary-contrast);
   letter-spacing: -0.02em;
 }
 
@@ -68,13 +68,13 @@
   margin-top: 0;
   margin-right: 20px;
   overflow: hidden;
-  background-color: #e0e0e0;
+  background-color: var(--color-surface);
   background-image: var(--post-bg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   border-radius: 12px;
-  box-shadow: var(--shadow-md, 0 4px 16px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--shadow-md);
 }
 
 .featuredArticle {
@@ -93,7 +93,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary, #003399);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -102,7 +102,7 @@
 .empty {
   margin: 8px 0 0;
   font-size: 13px;
-  color: var(--color-text-muted, #616161);
+  color: var(--color-text-muted);
 }
 
 .featuredText {
@@ -110,7 +110,7 @@
   font-size: clamp(15px, 2.2vw, 17px);
   font-weight: 800;
   line-height: 1.45;
-  color: var(--color-text, #212121);
+  color: var(--color-text);
   letter-spacing: -0.02em;
 }
 
@@ -118,7 +118,7 @@
   display: block;
   font-size: 12px;
   font-weight: 500;
-  color: var(--color-text-muted, #616161);
+  color: var(--color-text-muted);
 }
 
 .list {
@@ -128,7 +128,7 @@
 }
 
 .listItem {
-  border-bottom: 1px solid var(--color-border, #e8e8e8);
+  border-bottom: 1px solid var(--color-border);
 
   &:last-child {
     border-bottom: none;
@@ -145,7 +145,7 @@
   transition: background var(--transition-fast, 0.15s ease);
 
   &:hover {
-    background: rgba(0, 51, 153, 0.04);
+    background: var(--brand-neon-dim);
   }
 
   &:hover .listTitle {
@@ -154,7 +154,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-primary, #003399);
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 }
@@ -164,14 +164,14 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 1.45;
-  color: var(--color-text, #212121);
+  color: var(--color-text);
 }
 
 .listDate {
   display: block;
   font-size: 11px;
   font-weight: 500;
-  color: var(--color-text-muted, #616161);
+  color: var(--color-text-muted);
 }
 
 @media (max-width: 1024px) {

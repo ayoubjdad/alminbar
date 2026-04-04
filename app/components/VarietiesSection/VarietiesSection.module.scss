@@ -44,7 +44,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #003399;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 10px;
   }
@@ -62,7 +62,7 @@
   width: 100%;
   aspect-ratio: 6 / 9;
   overflow: hidden;
-  background: #1a1a1a;
+  background: var(--color-bg);
 }
 
 .portraitImg {
@@ -117,20 +117,20 @@
   font-size: clamp(13px, 1.8vw, 14px);
   font-weight: 700;
   line-height: 1.45;
-  color: #212121;
+  color: var(--color-text);
 }
 
 .skeletonPortrait {
   width: 100%;
   aspect-ratio: 6 / 9;
-  background: #e8e8e8;
+  background: var(--color-border);
   border-radius: 8px;
 }
 
 .skeletonCaption {
   height: 14px;
   margin-top: 14px;
-  background: #e8e8e8;
+  background: var(--color-border);
   border-radius: 4px;
 }
 

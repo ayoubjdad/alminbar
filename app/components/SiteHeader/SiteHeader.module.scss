@@ -19,7 +19,7 @@
   justify-content: space-between;
   width: 100%;
   padding: clamp(16px, 4vw, 28px) 0 clamp(12px, 3vw, 18px);
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .left {
@@ -39,11 +39,11 @@
   transition: background 0.15s ease;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--brand-neon-dim);
   }
 
   &:focus-visible {
-    outline: 2px solid #003399;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 }
@@ -71,13 +71,47 @@
   justify-content: flex-end;
 }
 
+.themeToggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:hover {
+    background: var(--brand-neon-dim);
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.themeToggleIcon {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-text);
+}
+
 .liveBtn {
   padding: 6px 14px;
   font-size: clamp(12px, 2.5vw, 14px);
   color: #fff;
   white-space: nowrap;
   cursor: pointer;
-  background-color: #d00000;
+  background-color: var(--color-live);
   border: none;
   border-radius: 8px;
 }
@@ -86,8 +120,9 @@
   display: flex;
   max-width: 100%;
   overflow: hidden;
-  border: 1px solid #d0d0d0;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
+  background: var(--color-surface);
 }
 
 .search {
@@ -95,8 +130,13 @@
   min-width: 0;
   padding: 8px 10px;
   font-size: 14px;
-  background-color: #fff;
+  color: var(--color-text);
+  background-color: transparent;
   border: none;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
 }
 
 .searchBtn {
@@ -104,16 +144,21 @@
   padding: 8px 14px;
   font-size: clamp(12px, 2.5vw, 14px);
   font-weight: 700;
-  color: #fff;
+  color: var(--color-primary-contrast);
   white-space: nowrap;
   cursor: pointer;
-  background-color: #d00000;
+  background-color: var(--color-primary);
   border: none;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
 }
 
 .bell {
   font-size: 22px;
-  color: #424242;
+  color: var(--color-text-muted);
 }
 
 .nav {
@@ -135,14 +180,14 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #003399;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 4px;
   }
 }
 
 .navLabel {
-  color: #212121;
+  color: var(--color-text);
 }
 
 .backdrop {
@@ -166,8 +211,8 @@
   max-width: 100%;
   height: 100%;
   padding: 0;
-  background: #fff;
-  box-shadow: -6px 0 28px rgba(0, 0, 0, 0.18);
+  background: var(--color-surface-elevated);
+  box-shadow: -6px 0 28px rgba(0, 0, 0, 0.5);
   transition: transform 0.28s ease;
   transform: translateX(100%);
 }
@@ -181,13 +226,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 18px;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .drawerTitle {
   font-size: 18px;
   font-weight: 800;
-  color: #212121;
+  color: var(--color-text);
 }
 
 .drawerClose {
@@ -198,14 +243,14 @@
   height: 40px;
   padding: 0;
   font-size: 18px;
-  color: #212121;
+  color: var(--color-text);
   cursor: pointer;
   background: none;
   border: none;
   border-radius: 8px;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.06);
+    background: var(--brand-neon-dim);
   }
 }
 
@@ -221,20 +266,51 @@
   padding: 14px 14px;
   font-size: 16px;
   font-weight: 700;
-  color: #212121;
+  color: var(--color-text);
   text-decoration: none;
   border-radius: 8px;
   transition: background 0.15s ease;
 
   &:hover,
   &:focus-visible {
-    background: rgba(0, 51, 153, 0.08);
+    background: var(--brand-neon-dim);
   }
 
   &:focus-visible {
-    outline: 2px solid #003399;
+    outline: 2px solid var(--color-primary);
     outline-offset: 0;
   }
+}
+
+.drawerThemeBtn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 14px 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  background: var(--brand-neon-dim);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 0;
+  }
+}
+
+.drawerThemeIcon {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-primary);
 }
 
 @media (max-width: 1024px) {

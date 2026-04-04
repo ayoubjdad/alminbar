@@ -1,5 +1,7 @@
 import "./globals.css";
 import localFont from "next/font/local";
+import Script from "next/script";
+import { THEME_STORAGE_KEY } from "../lib/theme/constants";
 import { SITE } from "../lib/staticData/site";
 import Providers from "./providers";
 
@@ -21,10 +23,17 @@ export const metadata = {
   description: SITE.description,
 };
 
+const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var t=localStorage.getItem(k);var d=t==="light"||t==="dark"?t:"dark";document.documentElement.setAttribute("data-theme",d);document.documentElement.style.colorScheme=d==="light"?"light":"dark";}catch(e){document.documentElement.setAttribute("data-theme","dark");document.documentElement.style.colorScheme="dark";}})();`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body className={ailato.variable}>
+        <Script
+          id="alminbar-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeInitScript }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>

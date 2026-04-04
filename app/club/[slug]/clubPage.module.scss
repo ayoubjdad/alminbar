@@ -9,10 +9,10 @@
 
 .breadcrumb {
   font-size: 0.88rem;
-  color: #64748b;
+  color: var(--color-text-muted);
 
   a {
-    color: #2563eb;
+    color: var(--color-primary);
     text-decoration: none;
 
     &:hover {
@@ -23,7 +23,7 @@
 
 .sep {
   margin-inline: 6px;
-  color: #cbd5e1;
+  color: var(--color-border-strong);
 }
 
 .hero {
@@ -39,9 +39,9 @@
   height: 88px;
   border-radius: 16px;
   overflow: hidden;
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
-  border: 1px solid #e2e8f0;
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
 }
 
 .logo {
@@ -59,27 +59,27 @@
   margin: 0;
   font-size: clamp(1.35rem, 3.5vw, 1.85rem);
   font-weight: 800;
-  color: #0f172a;
+  color: var(--color-text);
 }
 
 .city {
   margin: 0;
   font-size: 0.95rem;
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 
 .sectionTitle {
   margin: 0 0 10px;
   font-size: 1.05rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--color-text);
 }
 
 .statsMeta {
   margin: -4px 0 10px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-text-muted);
 }
 
 .statsSource {
@@ -87,8 +87,8 @@
   padding: 10px 14px 12px;
   font-size: 0.78rem;
   line-height: 1.4;
-  color: #64748b;
-  border-top: 1px solid #f1f5f9;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
 }
 
 .statsMissing {
@@ -96,9 +96,9 @@
   padding: 14px 16px;
   font-size: 0.92rem;
   line-height: 1.5;
-  color: #64748b;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 14px;
 }
 
@@ -110,8 +110,8 @@
 
 .rankCard {
   border-radius: 14px;
-  border: 1px solid #e2e8f0;
-  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
   overflow: hidden;
 }
 
@@ -121,26 +121,26 @@
   gap: 12px;
   flex-wrap: wrap;
   padding: 14px 16px;
-  background: #eff6ff;
-  border-bottom: 1px solid #dbeafe;
+  background: var(--brand-neon-dim);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .rankLabel {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--color-text-muted);
 }
 
 .rankValue {
   font-size: 1.5rem;
   font-weight: 900;
-  color: #1d4ed8;
+  color: var(--color-primary);
 }
 
 .rankPts {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-text);
 }
 
 .statsTable {
@@ -152,17 +152,17 @@
   td {
     padding: 10px 14px;
     text-align: start;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--color-border);
   }
 
   th {
     font-weight: 600;
-    color: #64748b;
+    color: var(--color-text-muted);
     width: 22%;
   }
 
   td {
-    color: #0f172a;
+    color: var(--color-text);
     font-weight: 600;
   }
 
@@ -174,6 +174,7 @@
 
 .gdCell {
   font-variant-numeric: tabular-nums;
+  color: var(--color-primary);
 }
 
 .articles {
@@ -185,7 +186,7 @@
 .empty {
   margin: 0;
   padding: 12px 0;
-  color: #64748b;
+  color: var(--color-text-muted);
   font-size: 0.95rem;
 }
 

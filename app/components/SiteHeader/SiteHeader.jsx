@@ -3,12 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useId, useState } from "react";
+import { useTheme } from "../../ThemeProvider";
 import { useStaticData } from "../../../lib/staticData";
+import { THEME_DARK } from "../../../lib/theme/constants";
 import styles from "./SiteHeader.module.scss";
 import logo from "../../assets/logos/logo.png";
 
 export default function SiteHeader() {
   const { categories, site } = useStaticData();
+  const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -66,9 +69,27 @@ export default function SiteHeader() {
           </Link>
         </div>
         <div className={styles.actions}>
-          {/* <button type="button" className={styles.liveBtn}>
-            بث مباشر
-          </button> */}
+          <button
+            type="button"
+            className={styles.themeToggle}
+            onClick={toggleTheme}
+            aria-pressed={theme !== THEME_DARK}
+            aria-label={
+              theme === THEME_DARK
+                ? "تفعيل الوضع الفاتح"
+                : "تفعيل الوضع الداكن"
+            }
+            title={
+              theme === THEME_DARK
+                ? "الوضع الفاتح"
+                : "الوضع الداكن"
+            }
+          >
+            <i
+              className={`fi ${theme === THEME_DARK ? "fi-rr-brightness" : "fi-rr-moon"} ${styles.themeToggleIcon}`}
+              aria-hidden
+            />
+          </button>
           <div className={styles.searchWrap}>
             <input
               type="search"
@@ -136,6 +157,20 @@ export default function SiteHeader() {
               {c.label}
             </Link>
           ))}
+          <button
+            type="button"
+            className={styles.drawerThemeBtn}
+            onClick={() => {
+              toggleTheme();
+              close();
+            }}
+          >
+            <i
+              className={`fi ${theme === THEME_DARK ? "fi-rr-brightness" : "fi-rr-moon"} ${styles.drawerThemeIcon}`}
+              aria-hidden
+            />
+            {theme === THEME_DARK ? "الوضع الفاتح" : "الوضع الداكن"}
+          </button>
         </nav>
       </div>
     </div>

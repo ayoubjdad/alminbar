@@ -61,7 +61,7 @@
 }
 
 .homeLink {
-  color: #2563eb;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
 
@@ -155,7 +155,7 @@
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  background: #2563eb;
+  background: var(--color-primary);
   color: #fff;
   font-weight: 700;
   cursor: pointer;
@@ -211,7 +211,7 @@
 .linkBtn {
   background: none;
   border: none;
-  color: #2563eb;
+  color: var(--color-primary);
   cursor: pointer;
   font: inherit;
   margin-inline-start: 8px;
@@ -257,8 +257,8 @@
 }
 
 .tabActive {
-  background: #2563eb;
-  border-color: #2563eb;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
   color: #fff;
 }
 

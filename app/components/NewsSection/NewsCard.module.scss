@@ -17,7 +17,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #003399;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
     border-radius: 8px;
   }
@@ -28,7 +28,7 @@
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  background-color: #e0e0e0;
+  background-color: var(--color-surface);
   border-radius: 8px;
 }
 
@@ -47,11 +47,11 @@
   font-size: clamp(16px, 2.5vw, 20px);
   font-weight: 700;
   line-height: 1.4;
-  color: #212121;
+  color: var(--color-text);
   transition: text-decoration-color 0.15s ease;
 }
 
 .date {
   font-size: 12px;
-  color: #757575;
+  color: var(--color-text-muted);
 }

@@ -60,9 +60,9 @@
 }
 
 .input:focus {
-  outline: 2px solid #2563eb;
+  outline: 2px solid var(--color-primary);
   outline-offset: 1px;
-  border-color: #2563eb;
+  border-color: var(--color-primary);
 }
 
 .err {
@@ -76,7 +76,7 @@
   padding: 12px 20px;
   border: none;
   border-radius: 10px;
-  background: #2563eb;
+  background: var(--color-primary);
   color: #fff;
   font: inherit;
   font-weight: 700;
@@ -99,7 +99,7 @@
 
 .home {
   font-size: 0.9rem;
-  color: #2563eb;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
 }
