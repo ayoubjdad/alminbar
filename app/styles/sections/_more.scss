@@ -1,0 +1,61 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   More more more
+   ========================================================= */
+.rv-more {
+  padding-bottom: 90px;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: $neon-text;
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 34px;
+    svg {
+      color: $text;
+    }
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px 44px;
+  }
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  &__thumb {
+    display: block;
+    width: 82px;
+    height: 82px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    @include zoom-img;
+  }
+  &__title {
+    font-size: 12.5px;
+    font-weight: 800;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    @include clamp(2);
+    a:hover {
+      color: $neon-text;
+    }
+  }
+  &__stats {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    color: $gray-light;
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}

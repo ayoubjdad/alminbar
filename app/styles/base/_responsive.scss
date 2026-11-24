@@ -1,0 +1,226 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@include bp(1100px) {
+  .rv-header__nav {
+    gap: 22px;
+  }
+  .rv-today__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rv-video__grid,
+  .rv-video__bottom {
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+@include bp(900px) {
+  .rv-header__nav {
+    display: none;
+  }
+  .rv-today__top,
+  .rv-story__grid,
+  .rv-vote__inner,
+  .rv-video__grid,
+  .rv-video__bottom,
+  .rv-video__info {
+    grid-template-columns: 1fr;
+  }
+  .rv-vote__inner {
+    height: auto;
+  }
+  .rv-vote__media {
+    height: 280px;
+  }
+  .rv-vote__title {
+    font-size: 30px;
+  }
+  .rv-editor__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .rv-editor__main {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+  .rv-four__grid,
+  .rv-gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rv-more__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rv-writers__grid {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 40px;
+  }
+  .rv-video__player {
+    height: 360px;
+  }
+  .rv-video__side {
+    flex-direction: row;
+    > * {
+      flex: 1;
+    }
+  }
+  .rv-video__more {
+    justify-self: start;
+  }
+  .rv-doc__content {
+    width: 55%;
+  }
+  .rv-doc__big {
+    font-size: 64px;
+  }
+  .rv-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    padding: 0;
+  }
+}
+
+@include bp(600px) {
+  .rv-reels__track {
+    grid-auto-columns: 64vw;
+  }
+  .rv-logo img {
+    width: 120px;
+  }
+  .rv-vote__club img {
+    width: 72px;
+    height: 72px;
+  }
+  .rv-vote__vs {
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    box-shadow: 0 0 0 5px rgba($neon, 0.25);
+  }
+  .rv-title {
+    font-size: 26px;
+  }
+  .rv-flash__text {
+    font-size: 11px;
+  }
+  .rv-header .rv-container {
+    gap: 18px;
+  }
+  .rv-header__login {
+    padding: 0 16px;
+  }
+  .rv-today__cards,
+  .rv-editor__grid,
+  .rv-four__grid,
+  .rv-gallery__grid,
+  .rv-more__grid {
+    grid-template-columns: 1fr;
+  }
+  .rv-writers__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rv-doc__inner {
+    height: 320px;
+  }
+  .rv-doc__content {
+    width: 100%;
+  }
+  .rv-doc__overlay {
+    background: $photo-glow, rgba($pine, 0.7);
+  }
+  .rv-vote__body {
+    padding: 70px 24px 36px;
+  }
+  .rv-video__side {
+    flex-direction: column;
+  }
+  .rv-newsletter__form {
+    flex-direction: column;
+    align-items: center;
+  }
+  .rv-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Responsive — pages intérieures
+   ========================================================= */
+@include bp(1180px) {
+  .rv-header__nav {
+    display: none;
+  }
+  .rv-header__menu {
+    display: grid;
+  }
+}
+
+@include bp(1000px) {
+  .rv-content {
+    grid-template-columns: 1fr;
+  }
+  .rv-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .rv-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rv-lead {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include bp(700px) {
+  .rv-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .rv-article__title {
+    font-size: 26px;
+  }
+  .rv-article__hero {
+    height: 260px;
+  }
+  .rv-prose {
+    font-size: 16px;
+  }
+  .rv-page-header__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .rv-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include bp(600px) {
+  .rv-header > .rv-container {
+    height: 70px;
+    gap: 10px;
+  }
+  .rv-header__login {
+    display: none !important;
+  }
+  .rv-grid--3,
+  .rv-grid--4 {
+    grid-template-columns: 1fr;
+  }
+  .rv-lead__img {
+    height: 220px;
+  }
+  .rv-author-box {
+    flex-direction: column;
+  }
+  .rv-search-form {
+    flex-direction: column;
+    .rv-btn {
+      height: 46px;
+    }
+  }
+  .rv-comp-grid {
+    grid-template-columns: 1fr;
+  }
+  .rv-section-head {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,48 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Logos — أندية البطولة
+   ========================================================= */
+.rv-logos {
+  padding: 18px 0 8px;
+
+  &__track {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 0;
+    padding: 0 0 8px;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: $border-strong transparent;
+
+    li {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+  }
+  &__item {
+    display: grid;
+    place-items: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: $surface;
+    border: 1px solid $border;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+
+    img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+    &:hover,
+    &:focus-visible {
+      border-color: $neon;
+      box-shadow: 0 4px 22px rgba($neon, 0.25);
+      transform: translateY(-2px);
+    }
+  }
+}

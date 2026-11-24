@@ -1,0 +1,68 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Page club
+   ========================================================= */
+.rv-club-hero {
+  .rv-page-header {
+    background:
+      radial-gradient(60% 120% at 100% 0%, color-mix(in srgb, var(--club-a) 22%, transparent), transparent 70%),
+      $post-glow,
+      $surface;
+  }
+  &__logo {
+    width: 120px;
+    height: 120px;
+    padding: 12px;
+    object-fit: contain;
+    background: #fff;
+    border: 3px solid var(--club-a);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px color-mix(in srgb, var(--club-a) 30%, transparent);
+  }
+}
+
+.rv-stats {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px 6px;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 10px;
+    &:first-child {
+      background: $neon;
+      border-color: $neon;
+      color: $ink;
+      span {
+        color: $ink;
+      }
+    }
+  }
+  strong {
+    font-size: 24px;
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+  }
+  span {
+    font-size: 11px;
+    font-weight: 700;
+    color: $gray-light;
+  }
+}
+
+.rv-table tr.is-highlight {
+  background: rgba($neon, 0.16) !important;
+  .rv-table__name {
+    font-weight: 900;
+  }
+}

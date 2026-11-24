@@ -1,0 +1,45 @@
+/* =========================================================
+   «المنبر الرياضي» — نقطة الدخول الوحيدة للأنماط
+   abstracts → متغيرات + mixins (لا تُخرج CSS)
+   base → أساسيات + عناصر صغيرة
+   layout → الهيكل المشترك (شريط عاجل، رأس، تذييل…)
+   components → مكوّنات قابلة لإعادة الاستعمال
+   sections → أقسام الصفحة الرئيسية
+   pages → أنماط خاصة بكل صفحة
+   base/responsive → في الأخير دائماً
+   ========================================================= */
+@use "base/base";
+@use "base/atoms";
+
+@use "layout/flash";
+@use "layout/header";
+@use "layout/page-shell";
+@use "layout/newsletter";
+@use "layout/footer";
+
+@use "components/logos";
+@use "components/standings";
+@use "components/reels";
+@use "components/match";
+@use "components/today-matches";
+@use "components/widgets";
+
+@use "sections/today";
+@use "sections/doc-banner";
+@use "sections/editor-pick";
+@use "sections/derby";
+@use "sections/four-cards";
+@use "sections/video-gallery";
+@use "sections/story";
+@use "sections/more";
+@use "sections/writers";
+@use "sections/gallery";
+
+@use "pages/article";
+@use "pages/club";
+@use "pages/competition";
+@use "pages/author";
+@use "pages/listing";
+@use "pages/static";
+
+@use "base/responsive";

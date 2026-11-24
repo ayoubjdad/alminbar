@@ -1,0 +1,42 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Editor's pick
+   ========================================================= */
+.rv-editor {
+  padding-bottom: 90px;
+
+  .rv-title {
+    margin-bottom: 36px;
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.85fr 1fr;
+    gap: 40px;
+  }
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+  &__main {
+    gap: 14px;
+
+    .rv-card__img {
+      height: 305px;
+    }
+    h3 {
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1.5;
+      a:hover {
+        color: $neon-text;
+      }
+    }
+    p {
+      font-size: 12px;
+      color: $gray-light;
+      line-height: 1.85;
+    }
+  }
+}

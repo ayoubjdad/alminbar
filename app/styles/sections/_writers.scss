@@ -1,0 +1,51 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Writers
+   ========================================================= */
+.rv-writers {
+  padding-bottom: 90px;
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  &__avatar {
+    display: block;
+    width: 148px;
+    height: 148px;
+    max-width: 100%;
+    aspect-ratio: 1;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    @include zoom-img;
+  }
+  &__name {
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    a {
+      color: $text;
+      &.is-linkedin {
+        color: $blue-in;
+      }
+      &:hover {
+        color: $neon-text;
+      }
+    }
+  }
+}

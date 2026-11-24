@@ -1,0 +1,166 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Reels — بطاقات بنمط المنشورات
+   ========================================================= */
+.rv-reels {
+  padding-bottom: 90px;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 26px;
+  }
+  &__follow {
+    height: 38px;
+    padding: 0 18px;
+    direction: ltr;
+  }
+  &__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(210px, 1fr);
+    gap: 18px;
+    margin: 0;
+    padding: 0 0 10px;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: $border-strong transparent;
+  }
+  &__item {
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+}
+
+.rv-reel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 9 / 16;
+  max-height: 470px;
+  overflow: hidden;
+  color: #fff !important;
+  background: $pine;
+  border: 1px solid $border;
+  border-radius: 14px;
+  isolation: isolate;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+
+  &__cover {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    @include cover;
+    transition: transform 0.5s ease;
+  }
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: $photo-glow, $post-overlay;
+  }
+  &__duration {
+    position: absolute;
+    top: 12px;
+    inset-inline-start: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    direction: ltr;
+    background: rgba($pine, 0.75);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  &__play {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    color: $ink;
+    background: $neon;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgba($neon, 0.2);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px 14px 18px;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.5;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+    @include clamp(3);
+  }
+  &__views {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(#fff, 0.75);
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: $neon;
+    box-shadow: 0 6px 26px rgba($neon, 0.25);
+    transform: translateY(-3px);
+  }
+  &:hover &__cover,
+  &:focus-visible &__cover {
+    transform: scale(1.05);
+  }
+  &:hover &__play,
+  &:focus-visible &__play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  &:focus-visible {
+    outline: 2px solid $neon;
+    outline-offset: 3px;
+  }
+
+  &--cta {
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px;
+    text-align: center;
+    color: $text !important;
+    background: $post-glow, $surface-2;
+
+    .rv-tag {
+      align-self: center;
+      direction: ltr;
+      font-size: 12px;
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+  }
+  &__logo {
+    width: 130px;
+  }
+  &__cta-text {
+    font-size: 17px;
+    font-weight: 900;
+    line-height: 1.6;
+  }
+}

@@ -1,0 +1,172 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Widgets — عناصر العمود الجانبي + شرائح الوسوم + الأزرار
+   ========================================================= */
+.rv-widget .rv-underline {
+  margin-bottom: 18px;
+}
+
+.rv-most-read {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid $border;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+  &__num {
+    flex-shrink: 0;
+    width: 28px;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1;
+    color: $neon-text;
+  }
+  &__title {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.6;
+    @include clamp(2);
+    &:hover {
+      color: $neon-text;
+    }
+  }
+  &__views {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 10px;
+    color: $gray-light;
+  }
+}
+
+.rv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: 999px;
+  transition: border-color 0.2s, color 0.2s;
+
+  img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+  }
+  &:hover {
+    border-color: $neon;
+    color: $neon-text;
+  }
+  &--tag {
+    color: $gray-light;
+  }
+}
+
+.rv-btn--ghost {
+  height: 44px;
+  padding: 0 24px;
+  border: 1px solid $border-strong;
+  &:hover {
+    border-color: $neon;
+    color: $neon-text;
+  }
+}
+
+/* شارة الفيديو على البطاقات */
+.rv-card__img {
+  position: relative;
+}
+.rv-card__play {
+  position: absolute;
+  bottom: 10px;
+  inset-inline-start: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  color: $ink;
+  background: $neon;
+  border-radius: 999px;
+  small {
+    font-size: 11px;
+    direction: ltr;
+  }
+}
+
+/* نماذج */
+.rv-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    &.is-full {
+      grid-column: 1 / -1;
+    }
+  }
+  input,
+  textarea {
+    padding: 12px 16px;
+    font: inherit;
+    font-weight: 400;
+    color: $text;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 10px;
+    outline: none;
+    &:focus {
+      border-color: $neon;
+      box-shadow: 0 0 0 3px rgba($neon, 0.2);
+    }
+  }
+  .rv-btn {
+    justify-self: start;
+    height: 46px;
+    padding: 0 34px;
+  }
+}
+
+.rv-search-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  input {
+    flex: 1;
+    height: 50px;
+    padding: 0 22px;
+    font: inherit;
+    color: $text;
+    background: $surface;
+    border: 1px solid $border;
+    border-radius: 999px;
+    outline: none;
+    &:focus {
+      border-color: $neon;
+      box-shadow: 0 0 0 3px rgba($neon, 0.2);
+    }
+  }
+  .rv-btn {
+    padding: 0 30px;
+  }
+}

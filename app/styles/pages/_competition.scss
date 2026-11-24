@@ -1,0 +1,75 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Pages compétition / classements
+   ========================================================= */
+.rv-table-wrap {
+  overflow-x: auto;
+}
+
+.rv-table--full {
+  font-size: 13px;
+  td,
+  th {
+    padding-inline: 8px;
+  }
+  .rv-table__name {
+    max-width: 220px;
+  }
+}
+
+.rv-comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.rv-comp-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    img {
+      width: 46px;
+      height: 46px;
+      padding: 6px;
+      object-fit: contain;
+      background: #fff;
+      border: 1px solid $border;
+      border-radius: 50%;
+    }
+    h2 {
+      font-size: 17px;
+      font-weight: 900;
+      a:hover {
+        color: $neon-text;
+      }
+    }
+    span {
+      font-size: 11px;
+      color: $gray-light;
+    }
+  }
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-end;
+    font-size: 12px;
+    font-weight: 800;
+    color: $neon-text !important;
+  }
+}
+
+.rv-standings__league {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:hover {
+    color: $neon-text;
+  }
+}

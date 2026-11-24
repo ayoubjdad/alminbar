@@ -1,0 +1,159 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Today matches — شريط «مباريات اليوم» (بطاقات .rv-match المعتادة)
+   ========================================================= */
+.rv-today-matches {
+  padding: 26px 0 4px;
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 20px;
+    margin-bottom: 14px;
+
+    .rv-section-head {
+      flex: 1 1 auto;
+      gap: 20px;
+      justify-content: flex-start;
+      margin-bottom: 0;
+    }
+    .rv-title {
+      font-size: 24px;
+    }
+  }
+  &__tools {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .rv-pill {
+      padding: 5px 12px;
+      font-family: inherit;
+      cursor: pointer;
+      small {
+        margin-inline-start: 2px;
+        font-size: 10px;
+        opacity: 0.7;
+      }
+      &.is-live:not(.is-active) {
+        color: $danger;
+      }
+    }
+  }
+  &__arrows {
+    display: flex;
+    gap: 6px;
+
+    button {
+      display: grid !important;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      background: $surface !important;
+      border: 1px solid $border !important;
+      border-radius: 50%;
+      transition: border-color 0.2s, background 0.2s;
+      &:hover {
+        background: $neon !important;
+        border-color: $neon !important;
+        color: $ink;
+      }
+    }
+  }
+  &__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 250px;
+    gap: 14px;
+    margin: 0;
+    padding: 0 0 6px;
+    list-style: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    li {
+      scroll-snap-align: start;
+    }
+  }
+}
+
+/* إضافات بطاقة المباراة: اسم المسابقة، القناة، المباشر */
+.rv-match {
+  &__comp {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-weight: 800;
+    color: $text;
+    img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+  }
+  &__channel {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &.is-live {
+    border-color: rgba($danger, 0.35);
+  }
+  &__live {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 800;
+    color: $danger !important;
+
+    i {
+      width: 6px;
+      height: 6px;
+      background: $danger;
+      border-radius: 50%;
+      animation: rv-pulse 1.4s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes rv-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv-match__live i {
+    animation: none;
+  }
+}
+
+@include bp(600px) {
+  .rv-today-matches {
+    &__arrows {
+      display: none;
+    }
+    &__tools {
+      width: 100%;
+      overflow-x: auto;
+    }
+    .rv-pills {
+      flex-wrap: nowrap;
+    }
+    &__track {
+      grid-auto-columns: 78%;
+    }
+  }
+}
+
+/* صفحة المباريات: الشريط مباشرة بعد رأس الصفحة */
+.rv-matches-today {
+  margin: -24px 0 30px;
+}

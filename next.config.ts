@@ -1,20 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    /** أي مصدر https/http — للتطوير؛ في الإنتاج يُفضّل تقييد النطاقات */
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**",
-        pathname: "/**",
+  /* config options here */
+  experimental: {
+    agentFeedback: true,
+  },
+  cacheComponents: true,
+  partialPrefetching: true,
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
       },
-      {
-        protocol: "http",
-        hostname: "**",
-        pathname: "/**",
-      },
-    ],
+    },
   },
 };
 

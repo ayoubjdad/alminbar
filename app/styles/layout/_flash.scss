@@ -1,0 +1,55 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Flash bar
+   ========================================================= */
+.rv-flash {
+  background: $surface;
+  border-bottom: 1px solid $border;
+  color: $text;
+  height: 48px;
+
+  .rv-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 100%;
+  }
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: $red;
+    color: $ink;
+    height: 30px;
+    padding: 0 18px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  &__text {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__arrows {
+    display: flex;
+    gap: 8px;
+  }
+  &__arrow {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid $border-strong !important;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s;
+    &:hover {
+      background: rgba($neon, 0.18);
+    }
+  }
+}

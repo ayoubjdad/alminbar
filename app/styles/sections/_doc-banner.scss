@@ -1,0 +1,81 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Documentary banner
+   ========================================================= */
+.rv-doc {
+  padding-bottom: 90px;
+
+  &__inner {
+    position: relative;
+    display: block;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: $pine;
+    color: #fff !important;
+  }
+  &__img {
+    position: absolute;
+    inset: 0;
+    @include cover;
+    filter: grayscale(0.2);
+  }
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      $photo-glow,
+      linear-gradient(to left, rgba($pine, 0) 30%, rgba($pine, 0.92) 75%);
+  }
+  &__brand {
+    position: absolute;
+    top: 28px;
+    inset-inline-end: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &__brand-logo {
+    width: 96px;
+    height: auto;
+  }
+  &__content {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.1;
+  }
+  &__small {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  &__big {
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 1.15;
+  }
+  &__sub {
+    color: $neon-text;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  &__logos {
+    position: absolute;
+    bottom: 30px;
+    inset-inline-end: 40px;
+    display: flex;
+    gap: 38px;
+    direction: ltr;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    opacity: 0.9;
+  }
+}

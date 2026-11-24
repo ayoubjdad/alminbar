@@ -1,24 +1,32 @@
 import Link from "next/link";
-import AdZone from "./components/AdZone/AdZone";
-import HomePageLayout from "./layouts/HomePageLayout/HomePageLayout";
-import { AD_SLOTS } from "../lib/adSlots";
-import styles from "./not-found.module.scss";
+import { getMostRead } from "../lib/queries";
+import Card from "./components/ui/Card";
+
+export const metadata = { title: "الصفحة غير موجودة" };
 
 export default function NotFound() {
   return (
-    <HomePageLayout>
-      <div className={styles.root}>
-        <h1 className={styles.title}>الصفحة غير موجودة</h1>
-        <p className={styles.text}>
-          لم نعثر على العنوان المطلوب. يمكنك العودة إلى الصفحة الرئيسية.
-        </p>
-        <Link href="/" className={styles.link}>
-          الصفحة الرئيسية
-        </Link>
-        <div className={styles.ad}>
-          <AdZone slot={AD_SLOTS.NOT_FOUND_INLINE} variant="rectangle" />
+    <div className="rv-container rv-page-body">
+      <div className="rv-404">
+        <strong className="rv-404__code">404</strong>
+        <h1 className="rv-title">
+          الصفحة <span>غير موجودة</span>
+        </h1>
+        <p>ربما تم نقل هذه الصفحة أو حذفها. جرّب البحث أو العودة إلى الرئيسية.</p>
+        <div className="rv-404__actions">
+          <Link href="/" className="rv-btn rv-btn--red">
+            العودة إلى الرئيسية
+          </Link>
+          <Link href="/search" className="rv-btn rv-btn--ghost">
+            بحث
+          </Link>
         </div>
       </div>
-    </HomePageLayout>
+      <div className="rv-grid rv-grid--4">
+        {getMostRead(4).map((a) => (
+          <Card key={a.slug} item={a} showMeta={false} />
+        ))}
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,181 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Header
+   ========================================================= */
+.rv-header {
+  position: relative;
+  z-index: 50;
+  /* pas de backdrop-filter : il casserait le position: fixed du tiroir mobile */
+  background: $surface;
+  border-bottom: 1px solid $border;
+
+  > .rv-container {
+    display: flex;
+    align-items: center;
+    height: 84px;
+    gap: 28px;
+  }
+  &__menu {
+    display: none;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    color: $text;
+    border-radius: 8px;
+    &:hover {
+      background: rgba($neon, 0.15);
+    }
+  }
+  &__nav {
+    display: flex;
+    gap: 22px;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+
+    a {
+      position: relative;
+      padding: 6px 0;
+      &::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 2px;
+        background: $neon;
+        transform: scaleX(0);
+        transition: transform 0.2s;
+      }
+      &:hover {
+        color: $neon-text;
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+  }
+  &__actions {
+    margin-inline-start: auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    &:hover,
+    &[aria-expanded="true"] {
+      background: rgba($neon, 0.15);
+      color: $neon-text;
+    }
+  }
+  &__login {
+    height: 40px;
+    padding: 0 22px;
+  }
+
+  /* شريط البحث */
+  &__search {
+    border-top: 1px solid $border;
+    background: $surface;
+
+    .rv-container {
+      display: flex;
+      gap: 12px;
+      padding-block: 14px;
+    }
+    input {
+      flex: 1;
+      height: 46px;
+      padding: 0 20px;
+      font: inherit;
+      color: $text;
+      background: $surface-2;
+      border: 1px solid $border;
+      border-radius: 999px;
+      outline: none;
+      &:focus {
+        border-color: $neon;
+        box-shadow: 0 0 0 3px rgba($neon, 0.25);
+      }
+    }
+    .rv-btn {
+      padding: 0 26px;
+    }
+  }
+}
+
+/* قائمة الجوال */
+.rv-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+
+  &__backdrop {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    background: rgba($pine, 0.45) !important;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  &__panel {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: min(320px, 86vw);
+    padding: 20px;
+    overflow-y: auto;
+    background: $surface;
+    box-shadow: 0 0 40px rgba($pine, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 16px;
+    font: inherit;
+    color: $text;
+    background: $surface-2;
+    border: 1px solid $border;
+    border-radius: 999px;
+  }
+  &__nav {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      padding: 13px 4px;
+      font-size: 15px;
+      font-weight: 800;
+      border-bottom: 1px solid $border;
+      &:hover {
+        color: $neon-text;
+      }
+    }
+  }
+
+  &.is-open {
+    pointer-events: auto;
+    .rv-drawer__backdrop {
+      opacity: 1;
+    }
+    .rv-drawer__panel {
+      transform: none;
+    }
+  }
+}

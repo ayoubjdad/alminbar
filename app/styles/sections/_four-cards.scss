@@ -1,0 +1,14 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Four cards
+   ========================================================= */
+.rv-four {
+  padding-bottom: 90px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+}

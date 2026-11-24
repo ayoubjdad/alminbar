@@ -1,0 +1,33 @@
+/* =========================================================
+   Mixins
+   ========================================================= */
+@mixin cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@mixin clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin zoom-img {
+  overflow: hidden;
+  img {
+    @include cover;
+    transition: transform 0.6s ease;
+  }
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@mixin bp($w) {
+  @media (max-width: $w) {
+    @content;
+  }
+}

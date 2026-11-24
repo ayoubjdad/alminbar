@@ -1,0 +1,214 @@
+@use "../abstracts" as *;
+
+/* =========================================================
+   Page article
+   ========================================================= */
+.rv-article-page {
+  padding-top: 26px;
+}
+
+.rv-article {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px 0 26px;
+  }
+  &__title {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.45;
+  }
+  &__lead {
+    font-size: 17px;
+    font-weight: 500;
+    color: $gray;
+    line-height: 1.9;
+  }
+  &__hero {
+    position: relative;
+    margin: 0 0 22px;
+    height: 460px;
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+      @include cover;
+    }
+    &.is-video .rv-video__play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+    }
+  }
+  &__duration {
+    position: absolute;
+    bottom: 14px;
+    inset-inline-start: 14px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    color: #fff;
+    direction: ltr;
+    background: rgba($pine, 0.75);
+    border-radius: 999px;
+  }
+}
+
+/* نص المقال */
+.rv-prose {
+  font-size: 17px;
+  line-height: 2;
+
+  p {
+    margin: 0 0 22px;
+  }
+  h2 {
+    margin: 34px 0 16px;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.5;
+  }
+  blockquote {
+    position: relative;
+    margin: 30px 0;
+    padding: 22px 26px;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.8;
+    background: $post-glow, $surface-2;
+    border-inline-start: 4px solid $neon;
+    border-radius: 8px;
+    p {
+      margin: 0;
+    }
+    &::before {
+      content: "“";
+      position: absolute;
+      top: -18px;
+      inset-inline-end: 18px;
+      font-size: 70px;
+      line-height: 1;
+      color: $neon-text;
+    }
+  }
+}
+
+/* المشاركة */
+.rv-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 28px;
+
+  &__label {
+    font-size: 12px;
+    font-weight: 800;
+    color: $gray-light;
+  }
+  &__btn {
+    display: grid !important;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    background: $surface !important;
+    border: 1px solid $border !important;
+    border-radius: 50%;
+    transition: border-color 0.2s, color 0.2s;
+    &:hover {
+      color: $neon-text;
+      border-color: $neon !important;
+    }
+    &.is-facebook {
+      color: #1877f2;
+    }
+    &.is-whatsapp {
+      color: #25d366;
+    }
+  }
+  &__copied {
+    font-size: 12px;
+    font-weight: 700;
+    color: $neon-text;
+  }
+}
+
+.rv-article-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 0;
+  border-top: 1px solid $border;
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  &__label {
+    font-size: 12px;
+    font-weight: 800;
+    color: $gray-light;
+  }
+}
+
+.rv-author-box {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  padding: 24px;
+  background: $post-glow, $surface;
+  border: 1px solid $border;
+  border-radius: 10px;
+
+  &__avatar {
+    flex-shrink: 0;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      @include cover;
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    small {
+      font-size: 11px;
+      color: $gray-light;
+    }
+    p {
+      margin: 6px 0;
+      font-size: 13px;
+      color: $gray;
+      line-height: 1.8;
+    }
+    .rv-writers__social {
+      justify-content: flex-start;
+    }
+  }
+  &__name {
+    font-size: 17px;
+    font-weight: 900;
+    &:hover {
+      color: $neon-text;
+    }
+  }
+  &__role {
+    font-size: 12px;
+    font-weight: 700;
+    color: $neon-text;
+  }
+}
+
+.rv-related {
+  padding: 50px 0 80px;
+  background: $surface-2;
+  border-top: 1px solid $border;
+}

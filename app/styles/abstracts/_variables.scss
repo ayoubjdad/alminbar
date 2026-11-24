@@ -1,0 +1,35 @@
+/* =========================================================
+   Variables
+   ========================================================= */
+/* Palette «المنبر الرياضي» (نسخة فاتحة فقط) — مأخوذة من منشورات الشبكات الاجتماعية:
+   أخضر نيون (#00fa63، نفس لون الشعار) للأزرار والوسوم + نص أسود كالشعار + خلفيات فاتحة */
+$neon: #00fa63;
+$neon-dark: #00d454;
+$neon-text: #00953b; // أخضر مقروء للنصوص فوق الأبيض
+$ink: #021007; // نص فوق النيون
+$bg: #f4f8f5;
+$surface: #ffffff;
+$surface-2: #eaf4ed;
+$pine: #03140b; // للتدرّجات فوق الصور فقط
+$border: #dbe8df;
+$border-strong: #b5d0bf;
+$black: #010101;
+$text: #03140b;
+$gray: #5f7a69;
+$gray-light: #627d6c;
+$bg-soft: $surface-2;
+$danger: #ff5a5f;
+$blue-in: #0a66c2;
+
+/* الأسماء القديمة (توافق) */
+$red: $neon;
+$red-dark: $neon-dark;
+$green: $neon;
+
+/* تدرّجات بنمط المنشورات */
+$post-glow: radial-gradient(90% 55% at 50% 110%, rgba($neon, 0.22), rgba($neon, 0) 70%);
+$photo-glow: radial-gradient(90% 55% at 50% 110%, rgba($neon, 0.32), rgba($neon, 0) 70%);
+$post-overlay: linear-gradient(180deg, rgba($pine, 0) 35%, rgba($pine, 0.85) 70%, $pine 100%);
+
+$container: 1200px;
+$radius: 6px;

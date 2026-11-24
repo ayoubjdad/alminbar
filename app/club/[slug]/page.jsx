@@ -1,138 +1,134 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import HomePageLayout from "../../layouts/HomePageLayout/HomePageLayout";
-import NewsCard from "../../components/NewsSection/NewsCard";
-import { findStandingRowForClub } from "../../../lib/data/botolaStandingsMatch";
-import { DEFAULT_BOTOLA_STANDINGS } from "../../../lib/data/footballRankings";
-import { getAllClubSlugs, getClubBySlug } from "../../../lib/moroccanClubs";
-import { getArticlesByClubServer } from "../../../lib/cms/articleQueries.server";
-import { SITE } from "../../../lib/staticData/site";
-import styles from "./clubPage.module.scss";
+import PageHeader from "../../components/layout/PageHeader";
+import MatchList from "../../components/sports/MatchList";
+import StandingsTable from "../../components/sports/StandingsTable";
+import Card from "../../components/ui/Card";
+import EmptyState from "../../components/ui/EmptyState";
+import { IcCalendar, IcMapPin, IcStadium, IcTrophy } from "../../components/ui/Icons";
+import SectionTitle from "../../components/ui/SectionTitle";
+import ContentLayout from "../../layouts/ContentLayout";
+import { orDash } from "../../../lib/helpers/format";
+import { getClubStanding } from "../../../lib/helpers/standings";
+import {
+  getArticlesByClub,
+  getClub,
+  getClubs,
+  getCompetition,
+  getFixtures,
+  getResults,
+} from "../../../lib/queries";
 
-export const dynamic = "force-dynamic";
-
-export async function generateStaticParams() {
-  return getAllClubSlugs().map((slug) => ({ slug }));
+export function generateStaticParams() {
+  return getClubs().map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const club = getClubBySlug(slug);
-  if (!club) return { title: "النادي غير موجود" };
-  return {
-    title: `${club.name} | ${SITE.name}`,
-    description: `أخبار وترتيب ${club.name}`,
-  };
-}
-
-function formatGd(gd) {
-  if (gd == null || Number.isNaN(gd)) return "—";
-  return gd > 0 ? `+${gd}` : String(gd);
+  const club = getClub(slug);
+  return club
+    ? { title: club.nameAr, description: `أخبار ${club.nameAr}: النتائج، الترتيب والمباريات القادمة.` }
+    : {};
 }
 
 export default async function ClubPage({ params }) {
   const { slug } = await params;
-  const club = getClubBySlug(slug);
+  const club = getClub(slug);
   if (!club) notFound();
 
-  const articles = getArticlesByClubServer(slug);
-  const standings = DEFAULT_BOTOLA_STANDINGS;
-  const row = findStandingRowForClub(standings.rows, club);
+  const standing = getClubStanding(slug);
+  const botola = getCompetition("botola");
+  const news = getArticlesByClub(slug, 6);
+  const results = getResults({ club: slug });
+  const fixtures = getFixtures({ club: slug });
+
+  const stats = standing
+    ? [
+        ["الترتيب", standing.rank],
+        ["النقاط", standing.pts],
+        ["لعب", standing.mp],
+        ["فوز", standing.won],
+        ["تعادل", standing.draw],
+        ["خسارة", standing.lost],
+        ["له", standing.goalsFor],
+        ["عليه", standing.goalsAgainst],
+      ]
+    : [];
 
   return (
-    <HomePageLayout>
-      <div className={styles.root}>
-        <nav className={styles.breadcrumb} aria-label="مسار التصفح">
-          <Link href="/">الرئيسية</Link>
-          <span className={styles.sep} aria-hidden>
-            /
-          </span>
-          <Link href="/#moroccan-clubs">أندية مغربية</Link>
-          <span className={styles.sep} aria-hidden>
-            /
-          </span>
-          <span>{club.shortName}</span>
-        </nav>
-
-        <header className={styles.hero}>
-          <div className={styles.logoWrap}>
-            <Image
-              src={club.logo}
-              alt=""
-              width={88}
-              height={88}
-              className={styles.logo}
-            />
-          </div>
-          <div className={styles.heroText}>
-            <h1 className={styles.title}>{club.name}</h1>
-            {/* <p className={styles.city}>{club.city}</p> */}
-          </div>
-        </header>
-
-        <section
-          className={styles.rankSection}
-          aria-labelledby="club-stats-heading"
+    <>
+      <div className="rv-club-hero" style={{ "--club-a": club.colors[0], "--club-b": club.colors[1] }}>
+        <PageHeader
+          title={club.nameAr}
+          breadcrumbs={[{ label: "الأندية", href: "/clubs" }, { label: club.nameAr }]}
+          media={
+            // eslint-disable-next-line @next/next/no-img-element
+            <img className="rv-club-hero__logo" src={club.logo} alt="" />
+          }
         >
-          <h2 id="club-stats-heading" className={styles.sectionTitle}>
-            إحصائيات النادي في الدوري
-          </h2>
-          {row ? (
-            <div className={styles.rankCard}>
-              <div className={styles.rankHighlight}>
-                <span className={styles.rankLabel}>المركز</span>
-                <span className={styles.rankValue}>#{row.rank}</span>
-                <span className={styles.rankPts}>{row.pts} نقطة</span>
-              </div>
-              <table className={styles.statsTable}>
-                <tbody>
-                  <tr>
-                    <th scope="row">لعب</th>
-                    <td>{row.mp ?? "—"}</td>
-                    <th scope="row">له</th>
-                    <td>{row.goalsFor ?? "—"}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">عليه</th>
-                    <td>{row.goalsAgainst ?? "—"}</td>
-                    <th scope="row">الفارق</th>
-                    <td className={styles.gdCell}>{formatGd(row.gd)}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p className={styles.statsMissing}>
-              لا يوجد صف مطابق لهذا النادي في جدول الترتيب الحالي.
-            </p>
-          )}
+          <ul className="rv-facts">
+            <li>
+              <IcMapPin size={14} /> {club.city}
+            </li>
+            <li>
+              <IcCalendar size={14} /> التأسيس: {orDash(club.founded)}
+            </li>
+            <li>
+              <IcStadium size={14} /> {orDash(club.stadium)}
+            </li>
+            <li>
+              <IcTrophy size={14} />
+              <Link href={botola.href}>{botola.name}</Link>
+            </li>
+          </ul>
+        </PageHeader>
+      </div>
+
+      <ContentLayout sidebarProps={{ standings: false }}>
+        {stats.length > 0 && (
+          <section className="rv-block">
+            <SectionTitle title="أرقام" accent="الموسم" />
+            <ul className="rv-stats">
+              {stats.map(([label, value]) => (
+                <li key={label}>
+                  <strong>{value}</strong>
+                  <span>{label}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section className="rv-block">
+          <SectionTitle title="المباريات" accent="القادمة" moreHref="/matches" />
+          <MatchList matches={fixtures} empty="لا توجد مباريات مبرمجة" />
         </section>
 
-        <section
-          className={styles.articles}
-          aria-labelledby="club-articles-heading"
-        >
-          <h2 id="club-articles-heading" className={styles.sectionTitle}>
-            أخبار النادي
-          </h2>
-          {articles.length === 0 ? (
-            <p className={styles.empty}>لا توجد مواد مرتبطة بهذا النادي بعد.</p>
-          ) : (
-            <div className={styles.grid}>
-              {articles.map((a) => (
-                <NewsCard
-                  key={a.slug}
-                  title={a.title}
-                  date={a.date}
-                  slug={a.slug}
-                  imageUrl={a.image}
-                />
+        <section className="rv-block">
+          <SectionTitle title="آخر" accent="النتائج" />
+          <MatchList matches={results} empty="لا توجد نتائج بعد" />
+        </section>
+
+        <section className="rv-block">
+          <SectionTitle title="أخبار" accent={club.shortName} />
+          {news.length ? (
+            <div className="rv-grid rv-grid--3">
+              {news.map((a) => (
+                <Card key={a.slug} item={a} />
               ))}
             </div>
+          ) : (
+            <EmptyState title={`لا توجد أخبار عن ${club.nameAr} حالياً`} />
           )}
         </section>
-      </div>
-    </HomePageLayout>
+
+        <section className="rv-block">
+          <SectionTitle title="ترتيب" accent="البطولة" moreHref={botola.href} />
+          <div className="rv-standings__panel">
+            <StandingsTable competition={botola} highlight={slug} />
+          </div>
+        </section>
+      </ContentLayout>
+    </>
   );
 }
